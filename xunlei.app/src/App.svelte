@@ -19,11 +19,12 @@
     };
   </script>
   
-  <Navbar title="My Website" />
+  <Navbar title="Xun Website" />
   
-  <main>
-    <Router {routes} />
-  </main>
+ 
+<main>
+  <Router {routes}/>
+</main>
   
   <style>
     main {
