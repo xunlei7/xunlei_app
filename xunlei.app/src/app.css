@@ -1,26 +1,39 @@
-:root {
-  --navbar-height: 4rem; /* 导航栏高度 */
-  --content-padding: 1rem; /* 主内容的内边距 */
+/* 全局样式 */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  transition: background-color 0.5s, color 0.5s; /* 平滑过渡 */
 }
 
-nav {
-  position: fixed; /* 固定导航栏 */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: var(--navbar-height); /* 使用变量定义高度 */
-  background-color: #333; /* 导航栏背景色 */
-  color: black;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 var(--content-padding);
-  z-index: 1000; /* 确保导航栏在最上层 */
+/* 白天主题 */
+.day-theme {
+  background-color: #ffffff; /* 白色背景 */
+  color: #000000; /* 黑色字体 */
 }
+
+/* 夜晚主题 */
+.night-theme {
+  background-color: #000000; /* 黑色背景 */
+  color: #ffffff; /* 白色字体 */
+}
+
+
+/* 白天链接样式 */
+.day-theme a {
+  color: rgb(0, 0, 0);
+}
+
+/* 夜晚链接样式 */
+.night-theme a {
+  color: rgb(255, 255, 255);
+}
+
 
 main {
-  margin-top: var(--navbar-height); /* 为内容留出导航栏的高度 */
-  padding: var(--content-padding);
-  background-color: #f9f9f9;
+  padding: 1rem; /* 主内容的内边距 */
+  margin-top: 1rem; /* 导航栏与内容的距离，确保间距适中 */
+  background-color: inherit; /* 继承背景颜色 */
+  color: inherit; /* 继承文字颜色 */
 }
+
 

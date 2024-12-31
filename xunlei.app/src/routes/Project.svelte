@@ -21,18 +21,18 @@
         {
             name: "YouTube-Video-Success",
             description: "Collection, preprocessing, and analysis of YouTube video data to extract meaningful insights",
-            language: "Python#",
-            tags: ["Python", "Mechine Learning"],
+            language: "Python",
+            tags: ["Mechine Learning"],
             httpsLink: "https://github.com/dsan-5000/YouTube-Video-Success.git",
             sshLink: "git@github.com:dsan-5000/YouTube-Video-Success.git",
-            webkitURL: "https://xunlei.georgetown.domains/portfolio_project/"
+            website: "https://xunlei.georgetown.domains/portfolio_project/"
             
         },
         {
             name: "Fuzzy Name Matching Algorithm",
             description: "Implement a Fuzzy Name Matching algorithm that computes a similarity score between two given names.",
-            language: "Python#",
-            tags: ["Python#"],
+            language: "Python",
+            tags: [],
             httpsLink: "https://github.com/DSAN5400-F24/fall-2024-assignment-04-xunlei7",
             sshLink: "git@github.com:DSAN5400-F24/fall-2024-assignment-04-xunlei7.git"
         }
@@ -66,7 +66,6 @@
     .projects-container {
         padding: 2rem;
         background-color: #121212;
-        color: white;
         display: flex;
         flex-direction: column;
         gap: 1rem;
