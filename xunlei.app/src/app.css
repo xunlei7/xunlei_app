@@ -1,11 +1,26 @@
 :root {
-  --navbar-height: 4rem;
+  --navbar-height: 4rem; /* 导航栏高度 */
+  --content-padding: 1rem; /* 主内容的内边距 */
 }
 
 nav {
-  height: var(--navbar-height);
+  position: fixed; /* 固定导航栏 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--navbar-height); /* 使用变量定义高度 */
+  background-color: #333; /* 导航栏背景色 */
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--content-padding);
+  z-index: 1000; /* 确保导航栏在最上层 */
 }
 
 main {
-  margin-top: var(--navbar-height);
+  margin-top: var(--navbar-height); /* 为内容留出导航栏的高度 */
+  padding: var(--content-padding);
+  background-color: #f9f9f9;
 }
+
