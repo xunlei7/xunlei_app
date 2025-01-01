@@ -1,6 +1,7 @@
 <script>
     import ProjectCard from '../components/ProjectCard.svelte'; // 引入 ProjectCard 组件
 
+    // 定义项目数据
     const projects = [
         {
             name: "xunlei.app",
@@ -26,7 +27,6 @@
             httpsLink: "https://github.com/dsan-5000/YouTube-Video-Success.git",
             sshLink: "git@github.com:dsan-5000/YouTube-Video-Success.git",
             website: "https://xunlei.georgetown.domains/portfolio_project/"
-            
         },
         {
             name: "Fuzzy Name Matching Algorithm",
@@ -38,17 +38,20 @@
         }
     ];
 
-
     let currentPopup = ""; // 当前打开弹窗的项目名称
 
-    // 设置当前弹窗的函数
+    // 设置当前弹窗的函数，支持多弹窗交互
     const setCurrentPopup = (popupName) => {
+        console.log("Popup clicked:", popupName); // 查看点击的弹窗名称
         currentPopup = currentPopup === popupName ? "" : popupName;
+        console.log("Updated Current Popup:", currentPopup); // 查看更新后的状态
     };
+
 </script>
 
 <main class="projects-container">
-    {#each projects as project}
+    <!-- 遍历项目数据并渲染项目卡片 -->
+    {#each projects as project (project.name)} <!-- 使用唯一标识符优化渲染 -->
         <ProjectCard
             name={project.name}
             description={project.description}
@@ -56,19 +59,10 @@
             tags={project.tags}
             httpsLink={project.httpsLink}
             sshLink={project.sshLink}
-            currentPopup={currentPopup}
+            website={project.website}
+            currentPopup={currentPopup} 
             setCurrentPopup={setCurrentPopup} 
         />
     {/each}
 </main>
 
-<style>
-    .projects-container {
-        padding: 2rem;
-        background-color: #121212;
-        display: flex;
-        justify-content: center; /* 水平居中 */
-        flex-direction: column;
-        gap: 1rem;
-    }
-</style>
