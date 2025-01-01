@@ -41,7 +41,7 @@
 
   <!-- 主内容区域 -->
   <main>
-    <Router {routes} />
+    <Router {routes}{isDayTime} />
   
   </main>
 </div>
