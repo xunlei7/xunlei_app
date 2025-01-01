@@ -42,9 +42,7 @@
 
     // 设置当前弹窗的函数，支持多弹窗交互
     const setCurrentPopup = (popupName) => {
-        console.log("Popup clicked:", popupName); // 查看点击的弹窗名称
         currentPopup = currentPopup === popupName ? "" : popupName;
-        console.log("Updated Current Popup:", currentPopup); // 查看更新后的状态
     };
 
 </script>
