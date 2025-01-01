@@ -41,7 +41,7 @@
 </script>
 
 <!-- 项目卡片 -->
-<div class="project-card">
+<div class="project-card" >
     <!-- 显示项目内容 -->
     <div class="content">
         <!-- 项目名称 -->

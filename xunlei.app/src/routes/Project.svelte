@@ -67,6 +67,7 @@
         padding: 2rem;
         background-color: #121212;
         display: flex;
+        justify-content: center; /* 水平居中 */
         flex-direction: column;
         gap: 1rem;
     }
