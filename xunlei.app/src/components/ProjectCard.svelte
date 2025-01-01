@@ -68,15 +68,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
     const handleOutsideClick = (event) => {
         const popup = document.querySelector(`.popup[data-name="${name}"]`);
         const codeButton = document.querySelector(`.code-button[data-name="${name}"]`);
