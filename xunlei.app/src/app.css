@@ -9,12 +9,16 @@ body {
 .day-theme {
   background-color: #ffffff; /* 白色背景 */
   color: #000000; /* 黑色字体 */
+  --popup-bg: #ffffff; /* 白色背景 */
+  --popup-text: #000000; /* 黑色字体 */
 }
 
 /* 夜晚主题 */
 .night-theme {
   background-color: #000000; /* 黑色背景 */
   color: #ffffff; /* 白色字体 */
+  --popup-bg: #000000; /* 黑色背景 */
+  --popup-text: #ffffff; /* 白色字体 */
 }
 
 

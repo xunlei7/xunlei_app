@@ -1,7 +1,6 @@
 <script>
     import ProjectCard from '../components/ProjectCard.svelte'; // 引入 ProjectCard 组件
-
-    // 定义项目数据
+    export let isDayTime; // 接收从 App.svelte 传递的 isDayTime
     const projects = [
         {
             name: "xunlei.app",
@@ -50,7 +49,7 @@
 <main class="projects-container">
     <!-- 遍历项目数据并渲染项目卡片 -->
     {#each projects as project (project.name)} <!-- 使用唯一标识符优化渲染 -->
-        <ProjectCard
+        <ProjectCard 
             name={project.name}
             description={project.description}
             language={project.language}
@@ -60,6 +59,8 @@
             website={project.website}
             currentPopup={currentPopup} 
             setCurrentPopup={setCurrentPopup} 
+            isDayTime={isDayTime}
+        
         />
     {/each}
 </main>

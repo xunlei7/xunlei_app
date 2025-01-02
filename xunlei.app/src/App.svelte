@@ -1,6 +1,7 @@
 <script>
   import Navbar from './components/Navbar.svelte'; // 导入导航栏组件
   import Router from 'svelte-spa-router'; // 导入 Router
+  
 
   // 导入页面
   import Home from './routes/Home.svelte';
@@ -41,7 +42,7 @@
 
   <!-- 主内容区域 -->
   <main>
-    <Router {routes}{isDayTime} />
+    <Router {routes} props={{ isDayTime }}/>
   
   </main>
 </div>

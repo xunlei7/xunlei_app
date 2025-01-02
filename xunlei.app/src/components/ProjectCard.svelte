@@ -146,9 +146,15 @@
 
     {#if isPopupVisible}
         <div
-            class="popup {isDayTime ? 'day-theme' : 'night-theme'}"
+            class="popup"
             data-name={name}
-            style="width: calc({cloneUrl.length}ch + 4.5rem); min-width: 320px;"
+            style="width: calc({cloneUrl.length}ch + 4.5rem); min-width: 320px;
+            background-color: {isDayTime ? 'day-theme' : 'night-theme'};
+            color: {isDayTime ? 'day-theme' : 'night-theme'};
+           
+            
+            "
+            
         >
             <div class="popup-content">
                 <div class="protocol-switch">
@@ -242,11 +248,17 @@
         word-wrap: break-word;
         visibility: hidden;
         transition: background-color 0.5s ease, color 0.5s ease, transform 0.2s ease;
-        z-index: 9999;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        border: 2px solid #cccccc; /* 默认灰色边框 */ 
+        z-index: 9999;
+        background-color: var(--popup-bg, #ffffff); /* 确保背景色 */
+        color: var(--popup-text, #000000); /* 确保文字颜色 */
+       
+
     }
+    
 
     .popup-content {
         display: flex;
@@ -319,4 +331,7 @@
         white-space: nowrap;
         border: 1px solid #444;
     }
+
+
+
 </style>
