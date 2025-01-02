@@ -111,7 +111,7 @@
     <div class="project-card">
         <div class="content">
             <h2>{name}</h2>
-            <p>{description}</p>
+            <p class="description">{description}</p>
             <div class="language">
                 <span
                     class="language-dot"
@@ -143,7 +143,7 @@
             </button>
         </div>
     </div>
-
+    
     {#if isPopupVisible}
         <div
             class="popup"
@@ -192,6 +192,9 @@
         </div>
     {/if}
 </div>
+
+<!-- 分割线 -->
+<div class="divider"></div>
 
 <style>
     /* 项目卡片容器样式 */
@@ -306,6 +309,7 @@
         align-items: center;
         margin-bottom: 0.5rem;
         font-size: 1rem;
+        color: rgba(255, 255, 255, 0.6); /* 半透明的淡灰色 */
     }
 
     .language-dot {
@@ -330,6 +334,21 @@
         font-size: 0.9rem;
         white-space: nowrap;
         border: 1px solid #444;
+    }
+
+    .divider {
+        width: 50%; /* 分割线宽度 */
+        height: 1px; /* 分割线高度 */
+        background-color: rgba(255, 255, 255, 0.245); /* 半透明的浅灰色 */
+        margin: 1rem auto;
+        
+    }
+
+    .description {
+        color: rgba(255, 255, 255, 0.6); /* 半透明的淡灰色 */
+        font-size: 1rem; /* 确保字体大小统一 */
+        margin-bottom: 0.5rem; /* 与其他元素的间距 */
+        line-height: 1.5; /* 改善可读性 */
     }
 
 

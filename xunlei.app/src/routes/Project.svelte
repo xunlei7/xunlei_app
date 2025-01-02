@@ -34,6 +34,14 @@
             tags: [],
             httpsLink: "https://github.com/DSAN5400-F24/fall-2024-assignment-04-xunlei7",
             sshLink: "git@github.com:DSAN5400-F24/fall-2024-assignment-04-xunlei7.git"
+        },
+        {
+            name: "Naive Bayes Classifier",
+            description: "Implements a Naive Bayes classifier to predict presidential speech authors, using custom and scikit-learn methods, with visualizations.",
+            language: "Python",
+            tags: ["Mechine Learning"],
+            httpsLink: "https://github.com/DSAN5400-F24/fall-2024-assignment-03-xunlei7.git",
+            sshLink: "git@github.com:DSAN5400-F24/fall-2024-assignment-03-xunlei7.git"
         }
     ];
 
