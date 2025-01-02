@@ -26,7 +26,7 @@
         Svelte: "#FF3E00",
         Python: "#3572A5",
         HTML: "#E34C26",
-        Rust: "#DEA584",
+        RISC_V: "#DEA584",
         C: "#178600",
         Default: "#999",
     };
