@@ -309,7 +309,7 @@
         align-items: center;
         margin-bottom: 0.5rem;
         font-size: 1rem;
-        color: rgba(255, 255, 255, 0.6); /* 半透明的淡灰色 */
+        color: inherit;
     }
 
     .language-dot {
@@ -339,13 +339,13 @@
     .divider {
         width: 50%; /* 分割线宽度 */
         height: 1px; /* 分割线高度 */
-        background-color: rgba(255, 255, 255, 0.245); /* 半透明的浅灰色 */
+        background-color: #cccccc;
         margin: 1rem auto;
         
     }
 
     .description {
-        color: rgba(255, 255, 255, 0.6); /* 半透明的淡灰色 */
+        color: inherit;
         font-size: 1rem; /* 确保字体大小统一 */
         margin-bottom: 0.5rem; /* 与其他元素的间距 */
         line-height: 1.5; /* 改善可读性 */
