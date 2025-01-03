@@ -1,19 +1,25 @@
 <script>
-  import { link } from 'svelte-spa-router'; // 导入 link 函数
-  export let title = "My Website"; // 导航栏标题
+  import { link } from 'svelte-spa-router'; // 导入 use:link
+  export let logo = ""; // 导航栏 logo 图片路径
   export let isDayTime = true; // 从父组件传递的主题状态
 </script>
 
 <!-- 导航栏 -->
 <nav class="{isDayTime ? 'day-theme' : 'night-theme'}">
-  <div class="logo">{title}</div>
+  <!-- logo 图像 -->
+  <div class="logo">
+    {#if logo}
+      <img src="{logo}" alt="Website Logo" class="logo-img" />
+    {/if}
+  </div>
   <ul>
-    <li><a href="/" use:link>Home</a></li>
-    <li><a href="/blog" use:link>Blog</a></li>
-    <li><a href="/read" use:link>Read</a></li>
-    <li><a href="/project" use:link>Project</a></li>
-    <li><a href="/about" use:link>About</a></li>
+    <li><a href="/" use:link class="nav-link">Home</a></li>
+    <li><a href="/blog" use:link class="nav-link">Blog</a></li>
+    <li><a href="/read" use:link class="nav-link">Read</a></li>
+    <li><a href="/project" use:link class="nav-link">Project</a></li>
+    <li><a href="/about" use:link class="nav-link">About</a></li>
   </ul>
+  
 </nav>
 
 <style>
@@ -33,9 +39,14 @@
 
 
   .logo {
-    font-weight: bold;
-    font-size: 1.5rem;
     margin-right: 20rem;
+  }
+
+  .logo-img {
+    height: 2rem; /* 设置 logo 图片高度 */
+    width: auto; /* 保持比例缩放 */
+    border-radius: 50%; /* 如果需要圆形 logo，可以保留 */
+    
   }
 
   ul {
@@ -48,10 +59,21 @@
 
   a {
     text-decoration: none;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 1rem;
     transition: color 0.5s;
   }
 
+  .nav-link {
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 1rem;
+    transition: color 0.5s;
+  }
 
+  .nav-link:hover {
+    color: #4b9cd3;
+  }
+
+ 
 </style>

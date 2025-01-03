@@ -12,15 +12,20 @@
 
   // 定义路由表
   const routes = {
-    '/': Home,         // 主页
-    '/blog': Blog,     // 博客页面
-    '/about': About,   // 关于页面
-    '/project': Project, // 项目页面
-    '/read': Read,     // 阅读页面
+    '/': Home,
+    '/blog': Blog,
+    '/read': Read,
+    '/project': Project,
+    '/about': About,
   };
+
 
   // 定义动态主题变量
   let isDayTime = true;
+
+  // 设置 logo 图片路径
+  let logo = "src/assets/logo.png";
+
 
   // 更新主题的方法
   const updateTheme = () => {
@@ -38,7 +43,7 @@
 <!-- 应用全局主题 -->
 <div class="{isDayTime ? 'day-theme' : 'night-theme'}">
   <!-- 导航栏 -->
-  <Navbar title="Xun Website" {isDayTime}/>
+  <Navbar {logo} {isDayTime}/>
 
   <!-- 主内容区域 -->
   <main>
