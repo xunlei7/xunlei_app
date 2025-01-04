@@ -107,9 +107,19 @@
       border-radius: 10px;
       margin-bottom: 2rem;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      background-color: #1a1a1a;
+      background-color: #ffffff; /* 默认白色背景 */
       text-align: center;
+      border: 1px solid rgba(0, 0, 0, 0.1); /* 默认边框 */
     }
+
+    @media (prefers-color-scheme: dark) {
+      .card {
+        background-color: #2c2c2e; /* 深色背景 */
+        border: 1px solid rgba(255, 255, 255, 0.1); /* 浅色边框 */
+        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* 微弱的白色阴影 */
+      }
+    }
+
   
     .btn {
       background-color: inherit;
