@@ -1,5 +1,5 @@
 <script>
-  import { link } from 'svelte-spa-router'; // 导入 use:link
+  import { link } from 'svelte-spa-router';  // 导入 use:link action
   export let logo = ""; // 导航栏 logo 图片路径
   export let isDayTime = true; // 从父组件传递的主题状态
 </script>
@@ -13,13 +13,14 @@
     {/if}
   </div>
   <ul>
-    <li><a href="/" use:link class="nav-link">Home</a></li>
-    <li><a href="/blog" use:link class="nav-link">Blog</a></li>
-    <li><a href="/read" use:link class="nav-link">Read</a></li>
-    <li><a href="/project" use:link class="nav-link">Project</a></li>
-    <li><a href="/about" use:link class="nav-link">About</a></li>
+   <!-- 使用 use:link 实现无刷新跳转 -->
+   <li><a href="/" use:link class="nav-link">Home</a></li>
+   <li><a href="/blog" use:link class="nav-link">Blog</a></li>
+   <li><a href="/read" use:link class="nav-link">Read</a></li>
+   <li><a href="/project" use:link class="nav-link">Project</a></li>
+   <li><a href="/about" use:link class="nav-link">About</a></li>
   </ul>
-  
+    
 </nav>
 
 <style>

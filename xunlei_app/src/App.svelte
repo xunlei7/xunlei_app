@@ -3,6 +3,8 @@
   import Router from 'svelte-spa-router'; // 导入 Router
   
 
+  
+
   // 导入页面
   import Home from './routes/Home.svelte';
   import Blog from './routes/Blog.svelte';
@@ -19,13 +21,15 @@
     '/about': About,
   };
 
-
+  
+  
   // 定义动态主题变量
   let isDayTime = true;
 
   // 设置 logo 图片路径
-  let logo = "src/assets/logo.png";
+  let logo = "/logo.png";
 
+  
 
   // 更新主题的方法
   const updateTheme = () => {
@@ -43,11 +47,12 @@
 <!-- 应用全局主题 -->
 <div class="{isDayTime ? 'day-theme' : 'night-theme'}">
   <!-- 导航栏 -->
-  <Navbar {logo} {isDayTime}/>
+  <Navbar {logo}  {isDayTime}/>
 
   <!-- 主内容区域 -->
   <main>
-    <Router {routes} props={{ isDayTime }}/>
+
+    <Router {routes} basepath="/" />
   
   </main>
 </div>
