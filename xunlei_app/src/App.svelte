@@ -1,59 +1,66 @@
 <script>
-  import Navbar from './components/Navbar.svelte'; // 导入导航栏组件
-  import Router from 'svelte-spa-router'; // 导入 Router
-  
-
-  
-
-  // 导入页面
   import Home from './routes/Home.svelte';
   import Blog from './routes/Blog.svelte';
-  import About from './routes/About.svelte';
-  import Project from './routes/Project.svelte';
   import Read from './routes/Read.svelte';
+  import Project from './routes/Project.svelte';
+  import About from './routes/About.svelte';
+  import Navbar from './components/Navbar.svelte';
 
-  // 定义路由表
-  const routes = {
-    '/': Home,
-    '/blog': Blog,
-    '/read': Read,
-    '/project': Project,
-    '/about': About,
-  };
-
-  
-  
-  // 定义动态主题变量
   let isDayTime = true;
-
-  // 设置 logo 图片路径
   let logo = "/logo.png";
+  let currentPage = "home";
 
+  // 组件映射
+  const pageComponents = {
+    home: Home,
+    blog: Blog,
+    read: Read,
+    project: Project,
+    about: About,
+  };
+  // 初始化页面，根据当前路径设置页面
+  function updatePage() {
+    const path = window.location.pathname.replace("/", "") || "home";
+    if (pageComponents[path]) {
+      currentPage = path; // 根据路径显示页面
+    } else {
+      currentPage = "home"; // 如果路径无效，显示首页
+    }
+  }
+
+  // 页面导航函数
+  function navigateTo(page) {
+    currentPage = page; // 更新当前页面
+    window.history.pushState({}, "", `/${page === "home" ? "" : page}`); // 更新地址栏
+  }
+
+  // 监听浏览器前进/后退按钮事件
+  window.addEventListener("popstate", updatePage);
   
-
-  // 更新主题的方法
+  updatePage();
+  
   const updateTheme = () => {
-    const currentHour = new Date().getHours(); // 获取当前小时
-    isDayTime = currentHour >= 6 && currentHour < 18; // 白天时间：6 AM - 6 PM
+    const currentHour = new Date().getHours();
+    isDayTime = currentHour >= 6 && currentHour < 18;
   };
 
-  // 页面加载时立即设置主题
   updateTheme();
+  setInterval(updateTheme, 60000);
 
-  // 每分钟更新一次主题
-  setInterval(updateTheme, 60000); // 每分钟检查一次时间
 </script>
 
-<!-- 应用全局主题 -->
 <div class="{isDayTime ? 'day-theme' : 'night-theme'}">
-  <!-- 导航栏 -->
-  <Navbar {logo}  {isDayTime}/>
-
-  <!-- 主内容区域 -->
+  <Navbar {logo} {isDayTime} onNavigate={navigateTo} />
   <main>
-
-    <Router {routes} basepath="/" />
-  
+    <!-- 动态加载页面 -->
+    {#if pageComponents[currentPage]}
+      <svelte:component this="{pageComponents[currentPage]}" />
+    {:else}
+      <h1>Page Not Found</h1>
+    {/if}
   </main>
 </div>
+
+
+
 

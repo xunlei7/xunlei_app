@@ -1,7 +1,7 @@
 <script>
-  import { link } from 'svelte-spa-router';  // 导入 use:link action
   export let logo = ""; // 导航栏 logo 图片路径
   export let isDayTime = true; // 从父组件传递的主题状态
+  export let onNavigate; // 接收 `app.svelte` 传入的导航方法
 </script>
 
 <!-- 导航栏 -->
@@ -12,15 +12,14 @@
       <img src="{logo}" alt="Website Logo" class="logo-img" />
     {/if}
   </div>
-  <ul>
-   <!-- 使用 use:link 实现无刷新跳转 -->
-   <li><a href="/" use:link class="nav-link">Home</a></li>
-   <li><a href="/blog" use:link class="nav-link">Blog</a></li>
-   <li><a href="/read" use:link class="nav-link">Read</a></li>
-   <li><a href="/project" use:link class="nav-link">Project</a></li>
-   <li><a href="/about" use:link class="nav-link">About</a></li>
+  <ul class="nav-list">
+    <li><a href="/" class="nav-link" on:click|preventDefault="{() => onNavigate('home')}">Home</a></li>
+    <li><a href="/blog" class="nav-link" on:click|preventDefault="{() => onNavigate('blog')}">Blog</a></li>
+    <li><a href="/read" class="nav-link" on:click|preventDefault="{() => onNavigate('read')}">Read</a></li>
+    <li><a href="/project" class="nav-link" on:click|preventDefault="{() => onNavigate('project')}">Project</a></li>
+    <li><a href="/about" class="nav-link" on:click|preventDefault="{() => onNavigate('about')}">About</a></li>
   </ul>
-    
+  
 </nav>
 
 <style>
@@ -58,6 +57,17 @@
     padding: 0;
   }
 
+  .nav-link {
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 1rem;
+    transition: color 0.5s;
+  }
+
+  .nav-link:hover {
+    color: #4b9cd3;
+  }
+
   a {
     text-decoration: none;
     font-weight: normal;
@@ -75,6 +85,7 @@
   .nav-link:hover {
     color: #4b9cd3;
   }
-
+  
+  
  
 </style>

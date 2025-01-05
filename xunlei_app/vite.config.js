@@ -1,14 +1,9 @@
-import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [svelte()],
-  base: '/',
   server: {
-    historyApiFallback: true,
+    historyApiFallback: true, // 启用 history 模式
   },
-  build: {
-    emptyOutDir: true,
-  },
-})
+});
