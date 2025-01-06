@@ -5,10 +5,27 @@
   import Project from './routes/Project.svelte';
   import About from './routes/About.svelte';
   import Navbar from './components/Navbar.svelte';
+  
 
   let isDayTime = true;
   let logo = "/logo.png";
   let currentPage = "home";
+
+  // 书籍列表
+  let books = [
+    
+    { title: "The C Programming Language", author: "Haruki Murakami", image:"/Cbook.jpg", description: "Description 1",year: "Reading Now" },
+    { title: "The C Programming Language", author: "Haruki Murakami", image: "/Cbook.jpg", description: "Description 1", year: "Reading Now" },
+    { title: "The C Programming Language", author: "Haruki Murakami", image: "/Cbook.jpg", description: "Description 1", year: "2014" },
+    { title: "The C Programming Language", author: "Haruki Murakami", image: "/Cbook.jpg", description: "Description 1", year: "2014" },
+    { title: "The C Programming Language", author: "Haruki Murakami", image: "/Cbook.jpg", description: "Description 1", year: "2014" },
+    { title: "The C Programming Language", author: "Haruki Murakami", image: "/Cbook.jpg", description: "Description 1", year: "2014" },
+    { title: "The C Programming Language", author: "Haruki Murakami", image: "/Cbook.jpg", description: "Description 1", year: "2015" },
+    { title: "The C Programming Language", author: "Haruki Murakami", image: "/Cbook.jpg", description: "Description 1", year: "2022" },
+    { title: "The C Programming Language", author: "Haruki Murakami", image: "/Cbook.jpg", description: "Description 1", year: "2022" },
+    { title: "The C Programming Language", author: "Haruki Murakami", image: "/Cbook.jpg", description: "Description 1", year: "2016" },
+  ];
+
 
   // 组件映射
   const pageComponents = {
@@ -38,7 +55,7 @@
   window.addEventListener("popstate", updatePage);
   
   updatePage();
-  
+
   const updateTheme = () => {
     const currentHour = new Date().getHours();
     isDayTime = currentHour >= 6 && currentHour < 18;
@@ -52,13 +69,14 @@
 <div class="{isDayTime ? 'day-theme' : 'night-theme'}">
   <Navbar {logo} {isDayTime} onNavigate={navigateTo} />
   <main>
-    <!-- 动态加载页面 -->
-    {#if pageComponents[currentPage]}
-      <svelte:component this="{pageComponents[currentPage]}" />
+    {#if currentPage === "read"}
+      <!-- 将 books 列表传递给 Read 页面 -->
+      <Read {isDayTime} {books} />
     {:else}
-      <h1>Page Not Found</h1>
+      <svelte:component this="{pageComponents[currentPage]}" />
     {/if}
   </main>
+  
 </div>
 
 
