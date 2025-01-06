@@ -5,6 +5,8 @@
   import Project from './routes/Project.svelte';
   import About from './routes/About.svelte';
   import Navbar from './components/Navbar.svelte';
+  import Footer from './components/Footer.svelte';
+  import Privacy from './routes/Privacy.svelte';
   
 
   let isDayTime = true;
@@ -35,6 +37,7 @@
     read: Read,
     project: Project,
     about: About,
+    privacy: Privacy, // 隐私页面
   };
   // 初始化页面，根据当前路径设置页面
   function updatePage() {
@@ -77,7 +80,8 @@
       <svelte:component this="{pageComponents[currentPage]}" />
     {/if}
   </main>
-  
+ 
+  <Footer onNavigate={navigateTo} {isDayTime}/>
 </div>
 
 

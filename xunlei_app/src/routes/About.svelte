@@ -1,5 +1,5 @@
 <script>
-    let email = "xl769@georgetown.edu"; // 替换为你的邮箱
+    let email = "xlei233@outlook.com"; // 替换为你的邮箱
   </script>
   
   <div class="container">
