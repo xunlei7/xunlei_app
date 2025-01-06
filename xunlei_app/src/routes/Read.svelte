@@ -1,17 +1,8 @@
 <script>
     export let isDayTime;
     let books = [
-        { title: "The C Programming Language", author: "Brian W. Kernighan and Dennis M. Ritchie", image:"/Cbook.jpg", description: "The book serves as both an introduction to the C programming language and a reference guide. It provides a concise, authoritative explanation of the language's core concepts, syntax, and powerful features, with numerous examples and exercises to solidify understanding.",year: "Reading Now" },
-        { title: "The C Programming Language", author: "Haruki Murakami", image: "/Cbook.jpg", description: "Description 1", year: "Reading Now" },
-        { title: "The C Programming Language", author: "Haruki Murakami", image: "/Cbook.jpg", description: "Description 1", year: "2014" },
-        { title: "The C Programming Language", author: "Haruki Murakami", image: "/Cbook.jpg", description: "Description 1", year: "2014" },
-        { title: "The C Programming Language", author: "Haruki Murakami", image: "/Cbook.jpg", description: "Description 1", year: "2014" },
-        { title: "The C Programming Language", author: "Haruki Murakami", image: "/Cbook.jpg", description: "Description 1", year: "2014" },
-        { title: "The C Programming Language", author: "Haruki Murakami", image: "/Cbook.jpg", description: "Description 1", year: "2015" },
-        { title: "The C Programming Language", author: "Haruki Murakami", image: "/Cbook.jpg", description: "Description 1", year: "2022" },
-        { title: "The C Programming Language", author: "Haruki Murakami", image: "/Cbook.jpg", description: "Description 1", year: "2022" },
-        { title: "The C Programming Language", author: "Haruki Murakami", image: "/Cbook.jpg", description: "Description 1", year: "2016" },
-        { title: "The C Programming Language", author: "Haruki Murakami", image: "/Cbook.jpg", description: "Description 1", year: "2014" },
+        { title: "The C Programming Language", author: "Brian W. Kernighan and Dennis M. Ritchie", image:"/Cbook.jpg", description: "The book serves as both an introduction to the C programming language and a reference guide. It provides a concise, authoritative explanation of the language's core concepts, syntax, and powerful features, with numerous examples and exercises to solidify understanding.",year: "2022" },
+        
     ];
   
     let groupedBooks = {};
@@ -57,7 +48,7 @@
 <div class="{isDayTime ? 'day-theme' : 'night-theme'} container">
     <!-- 关于我的阅读简介 -->
     <div class="reading-intro">
-      <h2>About My Reading Journey</h2>
+      <h2>My Reading Journey</h2>
       <p>I am passionate about books related to programming, fiction, and personal development. I enjoy immersing myself in new stories and learning from each book I read.</p>
     </div>
 
@@ -380,10 +371,11 @@
       flex-direction: column;
       align-items: center;
       margin-top: 1rem;
-      background-color: rgba(255, 255, 255, 0.85);
+      background-color:inherit;
       border-radius: 8px;
       padding: 1rem;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      border: 1px solid #d3d3d3; 
     }
 
     .close-year-button {
@@ -408,7 +400,7 @@
     }
 
     .close-year-button:hover {
-      background-color: #b02a37;
+      background-color: #007bff;
       color: white;
     }
 
@@ -446,7 +438,7 @@
     .timeline-book p {
       margin-top: 0.5rem;
       font-size: 0.85rem;
-      color: #333;
+      color: inherit;
     }
 
     .timeline-title {

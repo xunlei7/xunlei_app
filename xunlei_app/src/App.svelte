@@ -58,8 +58,9 @@
   <Navbar {logo} {isDayTime} onNavigate={navigateTo} />
   <main>
     {#if currentPage === "read"}
-      <!-- 将 books 列表传递给 Read 页面 -->
       <Read {isDayTime} />
+    {:else if currentPage === "blog"}
+      <Blog {isDayTime} />
     {:else}
       <svelte:component this="{pageComponents[currentPage]}" />
     {/if}
