@@ -150,10 +150,7 @@
             data-name={name}
             style="width: calc({cloneUrl.length}ch + 4.5rem); min-width: 320px;
             background-color: {isDayTime ? 'day-theme' : 'night-theme'};
-            color: {isDayTime ? 'day-theme' : 'night-theme'};
-           
-            
-            "
+            color: {isDayTime ? 'day-theme' : 'night-theme'};"
             
         >
             <div class="popup-content">
