@@ -3,10 +3,10 @@
     export let isDayTime; // 接收从 App.svelte 传递的 isDayTime
     const projects = [
         {
-            name: "xunlei.app",
+            name: "xunlei_web",
             description: "This site",
             language: "Svelte",
-            tags: ["SvelteKit", "Web App", "Server Side Rendering"],
+            tags: ["SvelteKit", "Web", "Server Side Rendering"],
             httpsLink: "https://github.com/xunlei7/xunlei.app.git",
             sshLink: "git@github.com:xunlei7/xunlei.app.git"
         },

@@ -5,7 +5,7 @@
   
   <footer class="footer {isDayTime ? 'day-footer' : 'night-footer'}">
     <div class="footer-content">
-      <span>© 2025 Xun Lei. All Rights Reserved. Made with love</span>
+      <span>© 2025 Xun Lei. All Rights Reserved. Made with love.</span>
       <a href="/" class="footer-link" on:click|preventDefault={() => onNavigate('privacy')}>Privacy</a>
     </div>
   </footer>
@@ -22,7 +22,7 @@
       max-width: 900px; /* 限制内容宽度 */
       margin: 0 auto; /* 将内容居中 */
       display: flex;
-      justify-content: center;
+      justify-content: space-around;
       align-items: center;
       gap: 1rem; /* 增加版权信息和隐私链接之间的间距 */
       color: #7a7878; /* 深灰色文字 */
