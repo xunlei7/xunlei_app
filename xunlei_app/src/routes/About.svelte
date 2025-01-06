@@ -1,5 +1,5 @@
 <script>
-    let email = "xlei233@outlook.com"; // 替换为你的邮箱
+    let email = "tonylei233@gmail.com"; // 替换为你的邮箱
   </script>
   
   <div class="container">
