@@ -1,22 +1,7 @@
 <script>
     export let isDayTime;
-    export let blogEntries = [
-        {
-            date: "2024年12月25日",
-            title: "Christmas Day",
-            text: "🎄 Merry Christmas! 🎄,Welcome to 2025, a new start",
-            image: "/tree.jpg",
-          
-        },
-        {
-            date: "2025年01月07日",
-            title: "",
-            text: "find it from the www.pexels.com, love it !",
-            image: "/love.jpg",
-        
-        },
-       
-    ];
+    import { blogEntries } from '../data/data.js';
+ 
 </script>
 
 <div class="blog-container {isDayTime ? 'day-theme' : 'night-theme'}">

@@ -1,20 +1,8 @@
 <script>
     export let isDayTime;
-    let books = [
-        { title: "The C Programming Language", 
-          author: "Brian W. Kernighan and Dennis M. Ritchie", 
-          image:"/Cbook.jpg", 
-          description: "The book serves as both an introduction to the C programming language and a reference guide. It provides a concise, authoritative explanation of the language's core concepts, syntax, and powerful features, with numerous examples and exercises to solidify understanding.",
-          year: "2022" 
-        },
-        { title: "The House of Camellia", 
-          author: "Ito Ogawa",
-          image: "/book.jpg",
-          description: "Hatoko inherits her grandmother’s letter-writing shop in Kamakura, helping clients express emotions through heartfelt letters. This touching story reflects on family, tradition, and the power of written words.",
-          year: "2023"
-        },
-    ];
-  
+    import { books, movies } from '../data/data.js';
+
+    // 书架
     let groupedBooks = {};
     books.forEach((book) => {
       if (!groupedBooks[book.year]) {
@@ -25,23 +13,40 @@
   
     let sortedYears = Object.keys(groupedBooks)
       .filter(year => year !== "Reading Now")
-      .sort((a, b) => Number(a) - Number(b));
+      .sort((a, b) => Number(b) - Number(a));
   
     if (Object.keys(groupedBooks).includes("Reading Now")) {
       sortedYears = ["Reading Now", ...sortedYears];
     }
 
-    let showModal = false; // 控制弹窗显示状态
-    let selectedBook = null; // 选中的书
+    //电影
+    let groupedMovies = {};
+    movies.forEach((movie) => {
+      if (!groupedMovies[movie.year]) {
+        groupedMovies[movie.year] = [];
+      }
+      groupedMovies[movie.year].push(movie);
+    });
+  
+    let sortedMovieYears = Object.keys(groupedMovies)
+      .filter(year => year !== "Watching Now")
+      .sort((a, b) => Number(b) - Number(a));
+  
+    if (Object.keys(groupedMovies).includes("Watching Now")) {
+      sortedMovieYears = ["Watching Now", ...sortedMovieYears];
+    }
 
-    function openModal(book) {
-      selectedBook = book;
+    let showModal = false; // 控制弹窗显示状态
+    let selectedItem = null; // 选中的书或电影
+
+    function openModal(item) {
+      selectedItem = item;
       showModal = true;
     }
 
     function closeModal() {
       showModal = false;
-      selectedBook = null;
+      selectedItem = null;
     }
     
     let selectedYear = null;
@@ -58,12 +63,37 @@
 <div class="{isDayTime ? 'day-theme' : 'night-theme'} container">
     <!-- 关于我的阅读简介 -->
     <div class="reading-intro">
-      <h2>My Reading Journey</h2>
+      <h2>Words, Reels, and Feels</h2>
       <p>I am passionate about books related to programming, fiction, and personal development. I enjoy immersing myself in new stories and learning from each book I read.</p>
     </div>
+   
+        <!-- 电影书架 -->
+    <div class="movieshelf-wrapper">
+      <h1 class="movieshelf-title">Movie & TV shelf</h1>
+        <p class="bookshelf-description">
+          Here's a collection of movies I have watched and loved:
+        </p>
+  
+        {#each sortedMovieYears as year}
+          <div class="year-section">
+            <h2 class="year-header">{year}</h2>
+            <div class="bookshelf">
+              {#each groupedMovies[year] as movie}
+                <button class="movie" type="button" on:click={() => openModal(movie)} aria-label="Open movie details">
+                  <img src={movie.image} alt={movie.title} />
+                </button>
+              {/each}
+            </div>
+          </div>
+        {/each}
+    </div>
 
+    <!-- 分割线 -->
+    <div class="divider"></div>
+
+    <!-- 书籍书架 -->
     <div class="bookshelf-wrapper">
-      <h1 class="bookshelf-title">My Bookshelf</h1>
+      <h1 class="bookshelf-title">Bookshelf</h1>
       <p class="bookshelf-description">
         Here's a collection of books I have read, want to read, and currently reading:
       </p>
@@ -86,10 +116,14 @@
     {#if showModal}
       <div class="modal-overlay" role="dialog" aria-modal="true">
         <div class="modal-content {isDayTime ? 'day-theme' : 'night-theme'}">
-          <img class="book-cover" src={selectedBook.image} alt="{selectedBook.title}" />
-          <h3>{selectedBook.title}</h3>
-          <p><strong>Author:</strong> {selectedBook.author}</p>
-          <p>{selectedBook.description}</p>
+          <img class="book-cover" src={selectedItem.image} alt="{selectedItem.title}" />
+          <h3>{selectedItem.title}</h3>
+          {#if selectedItem.author}
+            <p><strong>Author:</strong> {selectedItem.author}</p>
+          {:else if selectedItem.director}
+            <p><strong>Director:</strong> {selectedItem.director}</p>
+          {/if}
+          <p>{selectedItem.description}</p>
           <div class="modal-actions">
             <button class="close-button" on:click={closeModal}>Close</button>
           </div>
@@ -97,32 +131,39 @@
       </div>
     {/if}
 
-    <div class="reading-timeline-wrapper {isDayTime ? 'day-theme' : 'night-theme'}">
-        <h2 class="timeline-title">Reading Timeline</h2>
-        <div class="timeline-scroll-container">
-          <div class="timeline-x-axis"></div>
-          {#each sortedYears as year, index}
-            <div class="timeline-year">
-              <button class="year-button" on:click={() => openYearDetails(year)}>{year}</button>
-            </div>
-          {/each}
-        </div>
-      
+    <div class="combined-timeline-wrapper {isDayTime ? 'day-theme' : 'night-theme'}">
+      <h2 class="timeline-title">Timeline</h2>
+      <div class="timeline-scroll-container">
+        <div class="timeline-x-axis"></div>
+        {#each sortedYears.concat(sortedMovieYears).sort((a, b) => Number(a) - Number(b)) as year}
+          <div class="timeline-year">
+            <button class="year-button" on:click={() => openYearDetails(year)}>{year}</button>
+          </div>
+        {/each}
+      </div>
+  
         {#if selectedYear}
           <div class="year-details">
-            <h3>Books from {selectedYear}</h3>
+            <h3>from {selectedYear}</h3>
             <button class="close-year-button" on:click={closeYearDetails}>Close</button>
             <div class="year-books">
-              {#each groupedBooks[selectedYear] as book}
+              {#each groupedBooks[selectedYear] as book (book.title)}
                 <div class="timeline-book">
                   <img src={book.image} alt="{book.title}" />
-                  <p>{book.title}</p>
+                  <p>{book.title} (Book)</p>
+                </div>
+              {/each}
+              {#each groupedMovies[selectedYear] as movie (movie.title)}
+                <div class="timeline-book">
+                  <img src={movie.image} alt="{movie.title}" />
+                  <p>{movie.title} (Movie)</p>
                 </div>
               {/each}
             </div>
           </div>
         {/if}
-      </div>
+    </div>
+  
 </div>
 
 <style>
@@ -163,6 +204,18 @@
       scrollbar-color: transparent transparent; /* Firefox */
     }
 
+    .movieshelf-wrapper{
+      max-width: 80%;
+      height: 600px;
+      overflow-y: auto;
+      border-radius: 12px;
+      padding: 1rem;
+      background-color: inherit;
+      border: 2px solid #ccc;
+      scrollbar-width: thin; /* Firefox */
+      scrollbar-color: transparent transparent; /* Firefox */
+    }
+
     .bookshelf-wrapper::-webkit-scrollbar {
       width: 8px;
       opacity: 0;
@@ -172,11 +225,28 @@
     .bookshelf-wrapper:hover::-webkit-scrollbar {
       opacity: 1;
     }
+    .movieshelf-wrapper::-webkit-scrollbar {
+      width: 8px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .movieshelf-wrapper:hover::-webkit-scrollbar {
+      opacity: 1;
+    }
 
     .bookshelf-title {
       font-size: 1.25rem;
       font-weight: bold;
       margin-bottom: 0.3rem;
+      text-align: center;
+    }
+
+    .movieshelf-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+      text-align: center;
     }
 
     .year-header {
@@ -199,6 +269,22 @@
       box-shadow: none;
     }
 
+
+    .movie {
+      padding: 0;
+      background-color: transparent;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .movie img{
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
     .book img {
       width: 100%;
       height: 160px;
@@ -208,6 +294,11 @@
     }
 
     .book:hover img {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .movie:hover img {
       transform: translateY(-10px);
       box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
     }
@@ -287,7 +378,7 @@
       border-color: #007bff;
     }
 
-    .reading-timeline-wrapper {
+    .combined-timeline-wrapper {
       max-width: 100%;
       overflow-x: auto;
       padding: 2rem 0;
@@ -299,17 +390,17 @@
       box-shadow: none;
     }
 
-    .reading-timeline-wrapper::-webkit-scrollbar {
+    .combined-timeline-wrapper::-webkit-scrollbar {
       height: 8px;
       opacity: 0;
       transition: opacity 0.3s ease;
     }
 
-    .reading-timeline-wrapper:hover::-webkit-scrollbar {
+    .combined-timeline-wrapper:hover::-webkit-scrollbar {
       opacity: 1;
     }
 
-    .reading-timeline-wrapper::-webkit-scrollbar-thumb {
+    .combined-timeline-wrapper::-webkit-scrollbar-thumb {
       background-color: rgba(0, 0, 0, 0.4);
       border-radius: 4px;
     }
@@ -458,7 +549,7 @@
       margin-bottom: 1rem;
     }
 
-    .reading-timeline-wrapper h3 {
+    .combined-timeline-wrapper h3 {
       font-size: 1.25rem;
       margin-bottom: 0.5rem;
     }
@@ -466,4 +557,12 @@
     .timeline-year:hover .year-button {
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     }
+
+    .divider {
+      width: 50%; /* 分割线宽度 */
+      height: 1px; /* 分割线高度 */
+      background-color: #cccccc;
+      margin: 1rem auto;
+    }
+
 </style>
