@@ -1,20 +1,7 @@
 <script>
   export let isDayTime = true;
+  import { faqs } from '../data/data.js';
 
-  let faqs = [
-    {
-      question: "Why did you choose data science?",
-      answer: "I love solving complex problems and uncovering insights hidden in data.",
-    },
-    {
-      question: "What was your favorite project?",
-      answer: "My favorite project was a customer churn prediction model that helped a startup reduce customer attrition.",
-    },
-    {
-      question: "What challenges excite you the most?",
-      answer: "I enjoy working on time series forecasting problems due to their real-world impact and complexity.",
-    },
-  ];
 </script>
 
 <main class="homepage {isDayTime ? 'day-theme' : 'night-theme'}">
