@@ -1,8 +1,18 @@
 <script>
     export let isDayTime;
     let books = [
-        { title: "The C Programming Language", author: "Brian W. Kernighan and Dennis M. Ritchie", image:"/Cbook.jpg", description: "The book serves as both an introduction to the C programming language and a reference guide. It provides a concise, authoritative explanation of the language's core concepts, syntax, and powerful features, with numerous examples and exercises to solidify understanding.",year: "2022" },
-        
+        { title: "The C Programming Language", 
+          author: "Brian W. Kernighan and Dennis M. Ritchie", 
+          image:"/Cbook.jpg", 
+          description: "The book serves as both an introduction to the C programming language and a reference guide. It provides a concise, authoritative explanation of the language's core concepts, syntax, and powerful features, with numerous examples and exercises to solidify understanding.",
+          year: "2022" 
+        },
+        { title: "The House of Camellia", 
+          author: "Ito Ogawa",
+          image: "/book.jpg",
+          description: "Hatoko inherits her grandmother’s letter-writing shop in Kamakura, helping clients express emotions through heartfelt letters. This touching story reflects on family, tradition, and the power of written words.",
+          year: "2023"
+        },
     ];
   
     let groupedBooks = {};
