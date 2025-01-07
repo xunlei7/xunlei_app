@@ -4,9 +4,16 @@
         {
             date: "2024年12月25日",
             title: "Christmas Day",
-            text: "🎄 Merry Christmas! 🎄",
+            text: "🎄 Merry Christmas! 🎄,Welcome to 2025, a new start",
             image: "/tree.jpg",
-            alt: "Welcome to 2025, a new start"
+          
+        },
+        {
+            date: "2025年01月07日",
+            title: "",
+            text: "find it from the www.pexels.com, love it !",
+            image: "/love.jpg",
+        
         },
        
     ];

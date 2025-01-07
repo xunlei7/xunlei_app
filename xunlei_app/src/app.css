@@ -5,6 +5,16 @@ body {
   transition: background-color 0.5s, color 0.5s; /* 平滑过渡 */
 }
 
+html, body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* 防止水平滚动条 */
+  
+  
+}
+
 /* 白天主题 */
 .day-theme {
   background-color: #ffffff; /* 白色背景 */
@@ -34,6 +44,7 @@ body {
 
 
 main {
+  flex: 1; /* 让 main 区域自动填满剩余高度 */
   padding: 1rem; /* 主内容的内边距 */
   margin-top: 1rem; /* 导航栏与内容的距离，确保间距适中 */
   background-color: inherit; /* 继承背景颜色 */

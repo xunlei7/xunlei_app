@@ -1,115 +1,125 @@
 <script>
-    import { onMount } from "svelte";
+  export let isDayTime = true;
+
+  let faqs = [
+    {
+      question: "Why did you choose data science?",
+      answer: "I love solving complex problems and uncovering insights hidden in data.",
+    },
+    {
+      question: "What was your favorite project?",
+      answer: "My favorite project was a customer churn prediction model that helped a startup reduce customer attrition.",
+    },
+    {
+      question: "What challenges excite you the most?",
+      answer: "I enjoy working on time series forecasting problems due to their real-world impact and complexity.",
+    },
+  ];
+</script>
+
+<main class="homepage {isDayTime ? 'day-theme' : 'night-theme'}">
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <h1 class="hero-title">Welcome to My Website</h1>
+  </div>
+
+  <!-- Data Science Journey Section -->
+  <div class="content-section">
+    <h1 class="section-title"> Data Science Journey</h1>
+
   
-    let canvas;
-    let ctx;
-  
-    const dots = [];
-    const numDots = 100; // 调整为 100 个点，增加密集度
-    const maxLineDistance = 200; // 增加线条连接范围
-    let mouse = { x: null, y: null };
-  
-    function createDots() {
-      for (let i = 0; i < numDots; i++) {
-        dots.push({
-          x: Math.random() * window.innerWidth,
-          y: Math.random() * window.innerHeight,
-          vx: (Math.random() - 0.5) * 1.5,
-          vy: (Math.random() - 0.5) * 1.5,
-          radius: 1,
-        });
-      }
-    }
-  
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
-      // 绘制点
-      for (const dot of dots) {
-        ctx.beginPath();
-        ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "#000";
-        ctx.fill();
-  
-        dot.x += dot.vx;
-        dot.y += dot.vy;
-  
-        if (dot.x < 0 || dot.x > canvas.width) dot.vx *= -1;
-        if (dot.y < 0 || dot.y > canvas.height) dot.vy *= -1;
-      }
-  
-      // 连接点之间的线条
-      for (let i = 0; i < dots.length; i++) {
-        for (let j = i + 1; j < dots.length; j++) {
-          const dist = Math.hypot(dots[i].x - dots[j].x, dots[i].y - dots[j].y);
-          if (dist < maxLineDistance) {
-            ctx.beginPath();
-            ctx.moveTo(dots[i].x, dots[i].y);
-            ctx.lineTo(dots[j].x, dots[j].y);
-            ctx.strokeStyle = `rgba(0, 0, 0, ${1 - dist / maxLineDistance})`;
-            ctx.lineWidth = 0.5; // 更细的线条
-            ctx.stroke();
-          }
-        }
-      }
-  
-      // 鼠标与点的连接线
-      if (mouse.x !== null && mouse.y !== null) {
-        for (const dot of dots) {
-          const dist = Math.hypot(mouse.x - dot.x, mouse.y - dot.y);
-          if (dist < maxLineDistance) {
-            ctx.beginPath();
-            ctx.moveTo(mouse.x, mouse.y);
-            ctx.lineTo(dot.x, dot.y);
-            ctx.strokeStyle = `rgba(0, 0, 0, ${1 - dist / maxLineDistance})`;
-            ctx.lineWidth = 0.7; // 鼠标的线条稍微更明显
-            ctx.stroke();
-          }
-        }
-      }
-  
-      requestAnimationFrame(draw);
-    }
-  
-    function handleMouseMove(event) {
-      mouse.x = event.clientX;
-      mouse.y = event.clientY;
-    }
-  
-    function handleMouseOut() {
-      mouse.x = null;
-      mouse.y = null;
-    }
-  
-    onMount(() => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      ctx = canvas.getContext("2d");
-  
-      createDots();
-      draw();
-  
-      window.addEventListener("mousemove", handleMouseMove);
-      window.addEventListener("mouseout", handleMouseOut);
-  
-      window.addEventListener("resize", () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      });
-  
-      return () => {
-        window.removeEventListener("mousemove", handleMouseMove);
-        window.removeEventListener("mouseout", handleMouseOut);
-      };
-    });
-  </script>
-  
-  <canvas bind:this={canvas} style="position: fixed; top: 0; left: 0; z-index: -1;"></canvas>
-  
-  <style>
-    canvas {
-      width: 100%;
-      height: 100%;
-    }
-  </style>
-  
+    <!-- FAQ Section -->
+    <section class="faq">
+      <h2>Frequently Asked Questions</h2>
+      {#each faqs as faq}
+        <details
+          class="faq-card"
+          class:day-card="{isDayTime}"
+          class:night-card="{!isDayTime}"
+        >
+          <summary>{faq.question}</summary>
+          <p>{faq.answer}</p>
+        </details>
+      {/each}
+    </section>
+  </div>
+</main>
+
+<style>
+  .homepage {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hero-section {
+    width: 100%;
+    height: 77vh; /* 占据视口的 77% 高度 */
+    background-image: url('/clock.jpg');
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .day-theme {
+    background-color: white;
+  }
+
+  .night-theme {
+    background-color: black;
+  }
+
+  .hero-title {
+    top: 50%;
+    left: 50%;
+    transform: translate(60%, 50%);
+    font-size: 2.5rem;
+    color: white;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* 提升标题可读性 */
+    text-align: center;
+  }
+
+  .day-card {
+    background-color: #f5f5f5;
+    color: #000;
+  }
+
+  .night-card {
+    background-color: #2a2a3b;
+    color: white;
+  }
+
+
+
+  .content-section {
+    display: flex;
+    flex-direction: column; /* 垂直排列内容 */
+    align-items: center; /* 水平居中 */
+    justify-content: center; /* 垂直居中 */
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  .faq {
+    display: flex;
+    flex-direction: column; /* 纵向排列卡片 */
+    align-items: center; /* 水平居中 */
+    width: 100%; /* 确保宽度自适应 */
+  }
+
+  .faq-card {
+    max-width: 600px; /* 限制卡片最大宽度 */
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  .section-title {
+    text-align: center; /* 确保标题在中间 */
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+  }
+</style>

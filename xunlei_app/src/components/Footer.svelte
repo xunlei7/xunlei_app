@@ -13,19 +13,21 @@
   <style>
     .footer {
       width: 100%; /* 让页脚宽度占满屏幕 */
-      padding: 1rem 2rem;
+      padding: 0.5rem 1rem;
       border-top: 1px solid #444;
       background-color: inherit; /* 继承父级背景颜色 */
     }
   
     .footer-content {
-      max-width: 900px; /* 限制内容宽度 */
+      max-width: 800px; /* 限制内容宽度 */
       margin: 0 auto; /* 将内容居中 */
       display: flex;
       justify-content: space-around;
       align-items: center;
-      gap: 1rem; /* 增加版权信息和隐私链接之间的间距 */
+      gap: 0.5rem; /* 增加版权信息和隐私链接之间的间距 */
       color: #7a7878; /* 深灰色文字 */
+      display: flex;
+      flex-wrap: wrap; /* 允许内容在需要时换行 */
     
     }
   

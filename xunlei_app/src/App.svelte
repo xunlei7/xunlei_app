@@ -61,6 +61,8 @@
       <Read {isDayTime} />
     {:else if currentPage === "blog"}
       <Blog {isDayTime} />
+    {:else if currentPage === "home"}
+      <Home {isDayTime} /> <!-- 将 isDayTime 传入 Home 组件 -->
     {:else}
       <svelte:component this="{pageComponents[currentPage]}" />
     {/if}
