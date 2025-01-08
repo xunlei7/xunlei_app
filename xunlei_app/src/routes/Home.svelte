@@ -36,7 +36,7 @@
 <style>
   .hero-section {
     width: 100%; /* 占满视口宽度 */
-    height: 70vh; /* 占据视口高度的 2/3 */
+    height: 77vh; /* 占据视口高度的 2/3 */
     position: relative;
     overflow: hidden;
   }
