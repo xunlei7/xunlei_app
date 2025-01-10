@@ -116,14 +116,14 @@ export const movies = [
     director: "Makoto Shinkai", 
     image: "/YourName.jpg", 
     description: "A breathtaking Japanese animated romantic fantasy film that follows two teenagers mysteriously swapping bodies across time and space. Directed by Makoto Shinkai, this visually stunning masterpiece explores themes of fate, love, and connection.",
-    year: "2016" 
+    year: "2023" 
   },
   { 
     title: "Weathering With You", 
     director: "Makoto Shinkai", 
     image: "/WeatheringWithYou.jpg", 
     description: "A visually stunning Japanese animated film that tells the story of a high school boy who runs away to Tokyo and meets a girl with the mysterious power to control the weather. This enchanting tale of love, sacrifice, and supernatural forces captures the beauty and fragility of the world around us.",
-    year: "2019",
+    year: "2023",
     type: "movie"
   },
   { 
@@ -139,7 +139,7 @@ export const movies = [
     director: "Shinsuke Sato",
     image: "/AliceInBorderland.jpg",
     description: "A suspenseful Japanese sci-fi drama directed by Shinsuke Sato and based on the manga by Haro Aso. The story follows a group of individuals trapped in an abandoned Tokyo, forced to compete in deadly games to survive and escape. The series masterfully blends intense action, survival games, and a deep exploration of human nature.",
-    year: "2020",
+    year: "2022",
     type: "tv-show"
   },
   {
@@ -155,7 +155,7 @@ export const movies = [
     director: "Damien Chazelle",
     image: "/LaLaLand.jpg",
     description: "A romantic musical drama directed by Damien Chazelle that tells the story of a jazz musician and an aspiring actress who fall in love while pursuing their dreams in Los Angeles. With stunning cinematography, enchanting musical performances, and a bittersweet exploration of ambition and love, the film captivates audiences with its homage to classic Hollywood musicals.",
-    year: "2016",
+    year: "2022",
     type: "movie"
   },
   {
@@ -163,7 +163,7 @@ export const movies = [
     director: "Anthony Russo, Joe Russo",
     image: "/AvengersEndgame.jpg",
     description: "The epic conclusion to the Marvel Cinematic Universe's Infinity Saga, directed by Anthony and Joe Russo. The film follows the Avengers as they assemble once more to undo the catastrophic events caused by Thanos and restore balance to the universe. Packed with emotional moments, stunning action sequences, and a celebration of over a decade of storytelling, it remains a landmark in cinematic history.",
-    year: "2019",
+    year: "2022",
     type: "movie"
   },
   {
@@ -171,7 +171,7 @@ export const movies = [
     "director": "坂元裕二 (Yuji Sakamoto)",
     "image": "/Quartet.jpg",
     "description": "A Japanese television drama written by Yuji Sakamoto that tells the story of four musicians who, each struggling with their own uncertainties and secrets, unexpectedly come together to form a string quartet and live under one roof in Karuizawa. As their lives intertwine, the characters face revelations about their pasts and confront the complexities of human connection. Renowned for its heartfelt storytelling, witty and profound dialogue, and exploration of themes such as dreams, loneliness, and self-discovery, the series is celebrated as a poignant and uplifting narrative of growth and redemption.",
-    "year": "2017",
+    "year": "2022",
     type: "tv-show"
   },
   
