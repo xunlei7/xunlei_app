@@ -13,6 +13,22 @@ export const books = [
       description: "Hatoko inherits her grandmother’s letter-writing shop in Kamakura, helping clients express emotions through heartfelt letters. This touching story reflects on family, tradition, and the power of written words.",
       year: "2023"
     },
+    { 
+      title: "Xiao Gang Home", 
+      author: "Rice(大米)", 
+      image: "/XiaoGangHome.jpg", 
+      description: "A heartwarming story set in a small harbor town, following a family that has safeguarded the traditions of the harbor for generations. Amid the breathtaking scenery, they navigate the challenges of modern times while holding on to the values of family and dreams. This tale is a touching portrayal of love for one's home and the beauty in everyday life.",
+      year: "2023" 
+    },
+    { 
+      title: "Counselling For Toads: A Psychological Adventure", 
+      author: "Robert de Board", 
+      image: "/CounsellingForToads.jpg", 
+      description: "A unique and insightful story that reimagines the classic characters from *The Wind in the Willows*. Toad, struggling with depression, embarks on a journey of self-discovery through counseling. This thoughtful tale blends fiction and psychology, offering readers an engaging introduction to counseling concepts and emotional healing.",
+      year: "2023" 
+    },
+  
+  
 ];
 
 
@@ -73,8 +89,8 @@ export const movies = [
     year: "2023" 
   },
   {
-    title: "My Altay (我的阿勒泰)",
-    director: "Li Juan (李娟)", 
+    title: "My Altay",
+    director: "Li Juan(李娟)", 
     image: "/MyAltay.jpg",
     description: "Based on Li Juan's heartfelt memoirs, 'My Altay' captures the serene yet resilient life of the nomadic Kazakh community in the Altay Mountains. The story paints a poetic portrayal of the author's connection to the land, people, and culture, celebrating the beauty of everyday life and the harsh yet awe-inspiring nature of the region.",
     year: "2023"
@@ -92,8 +108,44 @@ export const movies = [
     image: "/YourName.jpg", 
     description: "A breathtaking Japanese animated romantic fantasy film that follows two teenagers mysteriously swapping bodies across time and space. Directed by Makoto Shinkai, this visually stunning masterpiece explores themes of fate, love, and connection.",
     year: "2016" 
-}
-
+  },
+  { 
+    title: "Weathering With You", 
+    director: "Makoto Shinkai", 
+    image: "/WeatheringWithYou.jpg", 
+    description: "A visually stunning Japanese animated film that tells the story of a high school boy who runs away to Tokyo and meets a girl with the mysterious power to control the weather. This enchanting tale of love, sacrifice, and supernatural forces captures the beauty and fragility of the world around us.",
+    year: "2019" 
+  },
+  { 
+    title: "Spy x Family: Codename White", 
+    director: "Tatsuya Endo", 
+    image: "/CodenameWhite.jpg", 
+    description: "A thrilling new chapter in the Spy x Family universe. 'Codename White' follows a mysterious new spy whose appearance disrupts the delicate balance between Operation Strix and the secretive underground world. With humor, action, and heartfelt family moments, this story deepens the intrigue surrounding the Forger family and their allies.",
+    year: "2024" 
+  },
+  {
+    title: "アリス・イン・ボーダーランド (Alice in Borderland)",
+    director: "Shinsuke Sato",
+    image: "/AliceInBorderland.jpg",
+    description: "A suspenseful Japanese sci-fi drama directed by Shinsuke Sato and based on the manga by Haro Aso. The story follows a group of individuals trapped in an abandoned Tokyo, forced to compete in deadly games to survive and escape. The series masterfully blends intense action, survival games, and a deep exploration of human nature.",
+    year: "2020"
+  },
+  {
+    title: "Wednesday",
+    director: "Tim Burton, Gandja Monteiro, James Marshall",
+    image: "/Wednesday.jpg",
+    description: "A Netflix original dark comedy mystery series centered around Wednesday Addams. Directed by Tim Burton and others, the story follows Wednesday as she joins Nevermore Academy, mastering her psychic abilities, solving a supernatural murder mystery, and uncovering long-buried secrets connected to her family. With a gothic atmosphere and sharp humor, the series reimagines the beloved Addams Family character for a modern audience.",
+    year: "2022",
+  },
+  {
+    title: "La La Land",
+    director: "Damien Chazelle",
+    image: "/LaLaLand.jpg",
+    description: "A romantic musical drama directed by Damien Chazelle that tells the story of a jazz musician and an aspiring actress who fall in love while pursuing their dreams in Los Angeles. With stunning cinematography, enchanting musical performances, and a bittersweet exploration of ambition and love, the film captivates audiences with its homage to classic Hollywood musicals.",
+    year: "2016"
+  }
+  
+  
 
 ];
 
@@ -206,6 +258,7 @@ export const projects = [
         httpsLink: "https://git.ucsc.edu/cse-12/spring22/xlei11.git",
         sshLink: "git@git.ucsc.edu:cse-12/spring22/xlei11.git"
     },
+    
 
 ];
 

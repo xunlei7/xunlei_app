@@ -69,9 +69,9 @@
    
         <!-- 电影书架 -->
     <div class="movieshelf-wrapper">
-      <h1 class="movieshelf-title">Movie & TV shelf</h1>
+      <h1 class="movieshelf-title">Movie & TV Shows shelf</h1>
         <p class="bookshelf-description">
-          Here's a collection of movies I have watched and loved:
+          Here's a collection of movies and TV shows I have watched and loved:
         </p>
   
         {#each sortedMovieYears as year}
