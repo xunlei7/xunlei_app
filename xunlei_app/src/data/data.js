@@ -88,14 +88,12 @@ export const movies = [
   },
   { 
     title: "Your Name", 
-    director: "Your Name Here", 
+    director: "Makoto Shinkai", 
     image: "/YourName.jpg", 
-    description: "A brief description of yourself. You can include your passions, achievements, or personality traits in a concise and engaging manner.",
+    description: "A breathtaking Japanese animated romantic fantasy film that follows two teenagers mysteriously swapping bodies across time and space. Directed by Makoto Shinkai, this visually stunning masterpiece explores themes of fate, love, and connection.",
     year: "2016" 
 }
 
-  
-  
 
 ];
 
