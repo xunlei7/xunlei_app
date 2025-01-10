@@ -85,7 +85,15 @@ export const movies = [
     image: "/ClawDollMovie.jpg",
     description: "Claw Doll is a 2024 comedy film starring Shen Teng and Ma Li. The story follows Ma Chenggang (played by Shen Teng), a wealthy man from Xihong City, and his wife Chunlan (played by Ma Li), as they attempt to raise their son Ma Jiye to become a responsible heir. To teach him life lessons, they pretend to be poor and live a humble life filled with hard work and valuable lessons. The film balances humor with a thoughtful exploration of parenting and education.",
     year: "2024"
-  }
+  },
+  { 
+    title: "Your Name", 
+    director: "Your Name Here", 
+    image: "/YourName.jpg", 
+    description: "A brief description of yourself. You can include your passions, achievements, or personality traits in a concise and engaging manner.",
+    year: "2016" 
+}
+
   
   
 
