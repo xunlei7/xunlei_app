@@ -1,6 +1,8 @@
 <script>
     export let isDayTime;
     import { blogEntries } from '../data/data.js';
+
+    let showAllBlogs = false; // 控制是否展开博客
  
 </script>
 
@@ -9,7 +11,7 @@
     <p class="blog-intro">Where every story, lesson, and discovery is a window into the passions that fuel my life.</p>
 
     <!-- Iterate over blog entries to display each entry -->
-    {#each blogEntries as entry, index}
+    {#each (showAllBlogs ? blogEntries : blogEntries.slice(0, 5)) as entry, index}
     <div class="blog-entry">
       <p class="post-date">{entry.date}</p>
       <h2 class="post-title">{entry.title}</h2>
@@ -20,6 +22,15 @@
       <hr class="divider" style="border-top: 1px solid #d3d3d3;">
     </div>
     {/each}
+
+    <!-- 展开/折叠按钮 -->
+    {#if blogEntries.length > 5}
+      <div class="toggle-button-container">
+          <button class="toggle-button" on:click={() => showAllBlogs = !showAllBlogs}>
+              {showAllBlogs ? "Show Less" : "Show More"}
+          </button>
+      </div>
+    {/if}
 </div>
 
 <style>
@@ -128,5 +139,31 @@
     /* Ensure no borders, padding, or background inconsistencies */
     .blog-container, .blog-entry, .post-image, .divider {
       box-shadow: none;
+    }
+
+    .toggle-button-container {
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .toggle-button {
+      background-color: inherit;
+      color: inherit;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      position: relative;
+      border: 2px solid #999;  /* 灰色边框 */
+    }
+
+    .toggle-button:hover {
+        border: 2px solid #d3d3d3;
+        background-color: #f5f5f5;
+        color: #000000;
+        transition: all 0.3s ease;
+    }
+
+    .toggle-button:focus {
+        outline: none;
     }
 </style>

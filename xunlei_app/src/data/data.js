@@ -309,6 +309,7 @@ export let blogEntries = [
         image: "/love.jpg",
     
     },
+  
    
 ];
 
