@@ -156,7 +156,7 @@
               {#each groupedMovies[selectedYear] as movie (movie.title)}
                 <div class="timeline-book">
                   <img src={movie.image} alt="{movie.title}" />
-                  <p>{movie.title} (Movie)</p>
+                  <p>{movie.title} ({movie.type === "movie" ? "Movie" : "TV"})</p>
                 </div>
               {/each}
             </div>

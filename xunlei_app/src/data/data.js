@@ -39,7 +39,8 @@ export const movies = [
     director: "Xin Shuang", 
     image: "/TheLongSeason.jpg", 
     description: "A gripping Chinese suspense drama that intertwines multiple timelines to unravel the mystery surrounding a disappearance. With rich characters and an evocative portrayal of time, the series explores human emotions, regret, and resilience.",
-    year: "2022" 
+    year: "2022" ,
+    type: "tv-show" 
   },
 
   { 
@@ -47,7 +48,8 @@ export const movies = [
     director: "Christopher Nolan", 
     image: "/Oppenheimer.jpg", 
     description: "A historical biopic that delves into the life of J. Robert Oppenheimer, the theoretical physicist known as the 'father of the atomic bomb.' The film captures his internal and external conflicts during the creation of the Manhattan Project and the devastating aftermath of his invention.",
-    year: "2024" 
+    year: "2024",
+    type: "movie" 
   },
 
   { 
@@ -55,7 +57,8 @@ export const movies = [
     director: "Nobuhiro Doi", 
     image: "/BeautifulBouquet.jpeg", 
     description: "A poignant Japanese romance that follows the bittersweet love story of a young couple who meet by chance but share a fleeting, yet profound connection. Through their shared dreams and struggles, the film paints a delicate portrait of fleeting modern relationships.",
-    year: "2024" 
+    year: "2024", 
+    type: "movie" 
   },
 
   { 
@@ -63,7 +66,8 @@ export const movies = [
     director: "Susumu Mitsunaka", 
     image: "/ConanHalloweenBride.jpg", 
     description: "This animated mystery film follows Conan Edogawa as he attempts to thwart a looming terrorist attack during a wedding ceremony. Filled with high-stakes drama, puzzles, and action, it’s a thrilling addition to the beloved Detective Conan series.",
-    year: "2024" 
+    year: "2024",
+    type: "movie" 
   },
 
   { 
@@ -71,7 +75,8 @@ export const movies = [
     director: "Hirokazu Kore-eda", 
     image: "/Shoplifters.jpg", 
     description: "A critically acclaimed Japanese drama that tells the story of a makeshift family surviving through petty theft and love on the margins of society. When they take in a neglected child, their bonds are tested as their secrets come to light.",
-    year: "2024" 
+    year: "2024",
+    type: "tv-show" 
   },
 
   { 
@@ -79,28 +84,32 @@ export const movies = [
     director: "Shawn Levy", 
     image: "/deadpool.jpg", 
     description: "The highly anticipated sequel follows the witty and irreverent antihero Deadpool as he embarks on a new adventure. Packed with hilarious humor, fourth-wall-breaking antics, and thrilling action, the movie is set to expand the Marvel Cinematic Universe with unexpected twists and beloved characters.",
-    year: "2024" 
+    year: "2024",
+    type: "movie" 
   },
   { 
     title: "Robot Dreams", 
     director: "Pablo Berger", 
     image: "/robot.jpg", 
     description: "A heartwarming and emotional animated film based on the graphic novel by Sara Varon. Set in a futuristic world, the story follows a lonely dog who builds a robot companion, only to face unexpected challenges and poignant lessons about friendship, loss, and resilience.",
-    year: "2023" 
+    year: "2023",
+    type: "movie" 
   },
   {
     title: "My Altay",
     director: "Li Juan(李娟)", 
     image: "/MyAltay.jpg",
     description: "Based on Li Juan's heartfelt memoirs, 'My Altay' captures the serene yet resilient life of the nomadic Kazakh community in the Altay Mountains. The story paints a poetic portrayal of the author's connection to the land, people, and culture, celebrating the beauty of everyday life and the harsh yet awe-inspiring nature of the region.",
-    year: "2023"
+    year: "2023",
+    type: "tv-show"
   },
   {
     title: "Claw Doll",
     director: "Yan Fei, Peng Damao",
     image: "/ClawDollMovie.jpg",
     description: "Claw Doll is a 2024 comedy film starring Shen Teng and Ma Li. The story follows Ma Chenggang (played by Shen Teng), a wealthy man from Xihong City, and his wife Chunlan (played by Ma Li), as they attempt to raise their son Ma Jiye to become a responsible heir. To teach him life lessons, they pretend to be poor and live a humble life filled with hard work and valuable lessons. The film balances humor with a thoughtful exploration of parenting and education.",
-    year: "2024"
+    year: "2024",
+    type: "movie"
   },
   { 
     title: "Your Name", 
@@ -114,21 +123,24 @@ export const movies = [
     director: "Makoto Shinkai", 
     image: "/WeatheringWithYou.jpg", 
     description: "A visually stunning Japanese animated film that tells the story of a high school boy who runs away to Tokyo and meets a girl with the mysterious power to control the weather. This enchanting tale of love, sacrifice, and supernatural forces captures the beauty and fragility of the world around us.",
-    year: "2019" 
+    year: "2019",
+    type: "movie"
   },
   { 
     title: "Spy x Family: Codename White", 
     director: "Tatsuya Endo", 
     image: "/CodenameWhite.jpg", 
     description: "A thrilling new chapter in the Spy x Family universe. 'Codename White' follows a mysterious new spy whose appearance disrupts the delicate balance between Operation Strix and the secretive underground world. With humor, action, and heartfelt family moments, this story deepens the intrigue surrounding the Forger family and their allies.",
-    year: "2024" 
+    year: "2024",
+    type: "tv-show"
   },
   {
     title: "アリス・イン・ボーダーランド (Alice in Borderland)",
     director: "Shinsuke Sato",
     image: "/AliceInBorderland.jpg",
     description: "A suspenseful Japanese sci-fi drama directed by Shinsuke Sato and based on the manga by Haro Aso. The story follows a group of individuals trapped in an abandoned Tokyo, forced to compete in deadly games to survive and escape. The series masterfully blends intense action, survival games, and a deep exploration of human nature.",
-    year: "2020"
+    year: "2020",
+    type: "tv-show"
   },
   {
     title: "Wednesday",
@@ -136,14 +148,32 @@ export const movies = [
     image: "/Wednesday.jpg",
     description: "A Netflix original dark comedy mystery series centered around Wednesday Addams. Directed by Tim Burton and others, the story follows Wednesday as she joins Nevermore Academy, mastering her psychic abilities, solving a supernatural murder mystery, and uncovering long-buried secrets connected to her family. With a gothic atmosphere and sharp humor, the series reimagines the beloved Addams Family character for a modern audience.",
     year: "2022",
+    type: "tv-show"
   },
   {
     title: "La La Land",
     director: "Damien Chazelle",
     image: "/LaLaLand.jpg",
     description: "A romantic musical drama directed by Damien Chazelle that tells the story of a jazz musician and an aspiring actress who fall in love while pursuing their dreams in Los Angeles. With stunning cinematography, enchanting musical performances, and a bittersweet exploration of ambition and love, the film captivates audiences with its homage to classic Hollywood musicals.",
-    year: "2016"
-  }
+    year: "2016",
+    type: "movie"
+  },
+  {
+    title: "Avengers: Endgame",
+    director: "Anthony Russo, Joe Russo",
+    image: "/AvengersEndgame.jpg",
+    description: "The epic conclusion to the Marvel Cinematic Universe's Infinity Saga, directed by Anthony and Joe Russo. The film follows the Avengers as they assemble once more to undo the catastrophic events caused by Thanos and restore balance to the universe. Packed with emotional moments, stunning action sequences, and a celebration of over a decade of storytelling, it remains a landmark in cinematic history.",
+    year: "2019",
+    type: "movie"
+  },
+  {
+    "title": "Quartet",
+    "director": "坂元裕二 (Yuji Sakamoto)",
+    "image": "/Quartet.jpg",
+    "description": "A Japanese television drama written by Yuji Sakamoto that tells the story of four musicians who, each struggling with their own uncertainties and secrets, unexpectedly come together to form a string quartet and live under one roof in Karuizawa. As their lives intertwine, the characters face revelations about their pasts and confront the complexities of human connection. Renowned for its heartfelt storytelling, witty and profound dialogue, and exploration of themes such as dreams, loneliness, and self-discovery, the series is celebrated as a poignant and uplifting narrative of growth and redemption.",
+    "year": "2017",
+    type: "tv-show"
+  },
   
   
 
