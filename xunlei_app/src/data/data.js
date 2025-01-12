@@ -296,20 +296,20 @@ export const projects = [
 
 export let blogEntries = [
     {
-        date: "2024年12月25日",
+        date: "12/25/2024",
         title: "Christmas Day",
         text: "🎄 Merry Christmas! 🎄,Welcome to 2025, a new start",
         image: "/tree.jpg",
       
     },
     {
-        date: "2025年01月07日",
+        date: "01/07/2025",
         title: "",
         text: "find it from the www.pexels.com, love it !",
         image: "/love.jpg",
     
     },
-  
+   
    
 ];
 
