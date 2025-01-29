@@ -296,11 +296,11 @@ export const projects = [
 
 export let blogEntries = [
     {
-        date: "12/25/2024",
-        title: "Christmas Day",
-        text: "🎄 Merry Christmas! 🎄,Welcome to 2025, a new start",
-        image: "/tree.jpg",
-      
+    date: "01/29/2025",
+    title: "why do cats and dogs",
+    text: "Wonderful visualization: https://whydocatsanddogs.com/cats",
+    image: "/catdog.gif",
+
     },
     {
         date: "01/07/2025",
@@ -309,6 +309,16 @@ export let blogEntries = [
         image: "/love.jpg",
     
     },
+    {
+      date: "12/25/2024",
+      title: "Christmas Day",
+      text: "🎄 Merry Christmas! 🎄,Welcome to 2025, a new start",
+      image: "/tree.jpg",
+    
+    },
+    
+  
+
    
    
 ];
