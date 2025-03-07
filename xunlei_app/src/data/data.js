@@ -34,6 +34,15 @@ export const books = [
 
 // movies
 export const movies = [
+  {
+    title: "Frieren: Beyond Journey‘s End",
+    director: "Keiichiro Saito",
+    image: "/Frieren.jpg",
+    description: "A thought-provoking fantasy anime that follows the story after the hero party's victory over the Demon King. As an elven mage with a long lifespan, Frieren embarks on a journey after the passing of her companions, exploring the meaning of time and human connections. With its delicate emotional portrayal and poetic storytelling, the series beautifully reflects on the passage of time and the weight of memories.",
+    year: "2025",
+    type: "tv-show"
+  },
+
   { 
     title: "The Long Season", 
     director: "Xin Shuang", 
@@ -92,7 +101,7 @@ export const movies = [
     director: "Pablo Berger", 
     image: "/robot.jpg", 
     description: "A heartwarming and emotional animated film based on the graphic novel by Sara Varon. Set in a futuristic world, the story follows a lonely dog who builds a robot companion, only to face unexpected challenges and poignant lessons about friendship, loss, and resilience.",
-    year: "2023",
+    year: "2025",
     type: "movie" 
   },
   {
@@ -167,15 +176,32 @@ export const movies = [
     type: "movie"
   },
   {
-    "title": "Quartet",
-    "director": "坂元裕二 (Yuji Sakamoto)",
-    "image": "/Quartet.jpg",
-    "description": "A Japanese television drama written by Yuji Sakamoto that tells the story of four musicians who, each struggling with their own uncertainties and secrets, unexpectedly come together to form a string quartet and live under one roof in Karuizawa. As their lives intertwine, the characters face revelations about their pasts and confront the complexities of human connection. Renowned for its heartfelt storytelling, witty and profound dialogue, and exploration of themes such as dreams, loneliness, and self-discovery, the series is celebrated as a poignant and uplifting narrative of growth and redemption.",
-    "year": "2022",
+    title: "Quartet",
+    director: "坂元裕二 (Yuji Sakamoto)",
+    image: "/Quartet.jpg",
+    description: "A Japanese television drama written by Yuji Sakamoto that tells the story of four musicians who, each struggling with their own uncertainties and secrets, unexpectedly come together to form a string quartet and live under one roof in Karuizawa. As their lives intertwine, the characters face revelations about their pasts and confront the complexities of human connection. Renowned for its heartfelt storytelling, witty and profound dialogue, and exploration of themes such as dreams, loneliness, and self-discovery, the series is celebrated as a poignant and uplifting narrative of growth and redemption.",
+    year: "2022",
     type: "tv-show"
   },
   
-  
+  {
+    title: "Alice in Borderland",
+    director: "Shinsuke Sato",
+    image: "/AliceInBorderland.jpg",
+    description: "A Netflix original sci-fi thriller series based on Haro Aso's manga. Directed by Shinsuke Sato, the story follows Arisu and his friends as they find themselves trapped in a mysterious, deserted Tokyo where they must participate in deadly games to survive. Each game is categorized by suits of playing cards, testing their intelligence, teamwork, and physical endurance. As they navigate this brutal new world, they uncover hidden truths about the Borderland and its purpose.",
+    year: "2024",
+    type: "tv-show"
+  },
+  {
+    title: "Daredevil",
+    director: "Steven S. DeKnight, Phil Abraham, Farren Blackburn",
+    image: "/Daredevil.jpg",
+    description: "A Netflix original action-crime series based on the Marvel Comics character Daredevil. The show follows Matt Murdock, a blind lawyer with heightened senses, who fights crime at night as the vigilante Daredevil in Hell's Kitchen, New York City. As he battles criminals and corruption, he faces powerful enemies like Wilson Fisk and The Hand, all while struggling with his moral code and personal sacrifices.",
+    year: "2025",
+    type: "tv-show"
+ },
+
+
 
 ];
 
@@ -302,24 +328,7 @@ export let blogEntries = [
     image: "/catdog.gif",
 
     },
-    {
-        date: "01/07/2025",
-        title: "",
-        text: "find it from the www.pexels.com, love it !",
-        image: "/love.jpg",
-    
-    },
-    {
-      date: "12/25/2024",
-      title: "Christmas Day",
-      text: "🎄 Merry Christmas! 🎄,Welcome to 2025, a new start",
-      image: "/tree.jpg",
-    
-    },
-    
   
-
-   
    
 ];
 
