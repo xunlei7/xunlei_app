@@ -217,6 +217,25 @@ export const projects = [
         sshLink: "git@github.com:xunlei7/xunlei.app.git"
     },
     {
+      name: "Coffee-Bean-Brochure",
+      description: "An interactive Quarto website exploring coffee bean types, processing methods, global quality and trade data, and social media sentiment analysis.",
+      language: "Python & R",
+      tags: [
+          "D3.js Visualizations",
+          "Quarto Website",
+          "Coffee Data",
+          "Sentiment Analysis",
+          "Geospatial Analysis",
+          "Data Storytelling",
+          "Reddit Text Mining",
+          "Global Trade"
+        ],
+        httpsLink: "https://github.com/gu-dsan5200/dsan5200-spring2025-project-group-09",
+        sshLink: "git@github.com:gu-dsan5200/dsan5200-spring2025-project-group-09.git",
+        website: "https://xunlei.georgetown.domains/visualization_project/"
+    },
+  
+    {
         name: "Toxic Comments Detection System in AI Arte",
         description: "A machine learning-based system to detect toxic comments",
         language: "Python",
