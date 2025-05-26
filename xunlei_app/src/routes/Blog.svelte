@@ -1,12 +1,11 @@
 <script>
-    export let isDayTime;
     import { blogEntries } from '../data/data.js';
 
     let showAllBlogs = false; // 控制是否展开博客
  
 </script>
 
-<div class="blog-container {isDayTime ? 'day-theme' : 'night-theme'}">
+<div class="blog-container">
     <h1 class="blog-title">Welcome to My World </h1>
     <p class="blog-intro">Where every story, lesson, and discovery is a window into the passions that fuel my life.</p>
 
@@ -95,45 +94,6 @@
       border: none;
       border-top: 1px solid #d3d3d3;
       margin: 0.8rem 0;
-    }
-
-    .day-theme.blog-container {
-        background-color: white;
-        color: black;
-    }
-
-    .night-theme.blog-container {
-      background-color: #000;
-      color: #f0f0f0;
-    }
-
-    .night-theme .blog-entry {
-      background-color: transparent;
-      color: inherit;
-    }
-
-    .night-theme .post-date {
-      color: #bbb;
-    }
-
-    .night-theme .divider {
-      border-top: 1px solid #555;
-    }
-
-    .day-theme .post-text {
-      color: #333;
-    }
-
-    .night-theme .post-text {
-      color: #ccc;
-    }
-
-    .day-theme .post-image {
-      border: none;
-    }
-
-    .night-theme .post-image {
-      border: none;
     }
 
     /* Ensure no borders, padding, or background inconsistencies */

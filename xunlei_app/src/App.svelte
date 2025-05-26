@@ -52,15 +52,31 @@
   updateTheme();
   setInterval(updateTheme, 60000);
 
+
+  function toggleTheme() {
+    isDayTime = !isDayTime;
+  }
+
+
+
 </script>
 
 <div class="{isDayTime ? 'day-theme' : 'night-theme'}">
   <Navbar {logo} {isDayTime} onNavigate={navigateTo} />
+
+    <!-- 👇 全局主题切换按钮（出现在每个页面） -->
+    <div class="theme-toggle-container">
+      <button class="theme-toggle-button" on:click={toggleTheme}>
+        {isDayTime ? '🌙 Dark Mode' : '☀️ Light Mode'}
+      </button>
+    </div>
+
+
   <main>
     {#if currentPage === "read"}
       <Read {isDayTime} />
     {:else if currentPage === "blog"}
-      <Blog {isDayTime} />
+      <Blog />
     {:else if currentPage === "home"}
       <Home {isDayTime} /> <!-- 将 isDayTime 传入 Home 组件 -->
     {:else}
