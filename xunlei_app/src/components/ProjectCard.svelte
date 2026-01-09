@@ -1,6 +1,6 @@
 <script>
     import { onMount } from "svelte";
-    export let isDayTime = true; // 从父组件传递的主题状态
+    import { isDayTime } from '../stores/theme.js';
     export let name = "";
     export let description = "";
     export let language = "";
@@ -148,9 +148,7 @@
         <div
             class="popup"
             data-name={name}
-            style="width: calc({cloneUrl.length}ch + 4.5rem); min-width: 320px;
-            background-color: {isDayTime ? 'day-theme' : 'night-theme'};
-            color: {isDayTime ? 'day-theme' : 'night-theme'};"
+            style="width: calc({cloneUrl.length}ch + 4.5rem); min-width: 320px;"
             
         >
             <div class="popup-content">

@@ -15,7 +15,7 @@
       <p class="post-date">{entry.date}</p>
       <h2 class="post-title">{entry.title}</h2>
       {#if entry.image}
-        <img class="post-image" src={entry.image} alt={entry.alt}>
+        <img class="post-image" src={entry.image} alt={entry.alt} loading="lazy">
       {/if}
       <p class="post-text">{@html entry.text}</p>
       <hr class="divider" style="border-top: 1px solid #d3d3d3;">

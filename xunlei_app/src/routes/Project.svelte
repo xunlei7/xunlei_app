@@ -1,6 +1,5 @@
 <script>
     import ProjectCard from '../components/ProjectCard.svelte'; // 引入 ProjectCard 组件
-    export let isDayTime; // 接收从 App.svelte 传递的 isDayTime
     import { projects } from '../data/data.js';
 
     let currentPopup = ""; // 当前打开弹窗的项目名称
@@ -24,8 +23,7 @@
             sshLink={project.sshLink}
             website={project.website}
             currentPopup={currentPopup} 
-            setCurrentPopup={setCurrentPopup} 
-            isDayTime={isDayTime}
+            setCurrentPopup={setCurrentPopup}
         
         />
     {/each}

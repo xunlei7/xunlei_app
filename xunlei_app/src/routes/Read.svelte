@@ -1,5 +1,5 @@
 <script>
-    export let isDayTime;
+    import { isDayTime } from '../stores/theme.js';
     import { books, movies } from '../data/data.js';
 
     // 书架
@@ -60,7 +60,7 @@
     }
 </script>
 
-<div class="{isDayTime ? 'day-theme' : 'night-theme'} container">
+<div class="{$isDayTime ? 'day-theme' : 'night-theme'} container">
     <!-- 关于我的阅读简介 -->
     <div class="reading-intro">
       <h2>Words, Reels, and Feels</h2>
@@ -80,7 +80,7 @@
             <div class="bookshelf">
               {#each groupedMovies[year] as movie}
                 <button class="movie" type="button" on:click={() => openModal(movie)} aria-label="Open movie details">
-                  <img src={movie.image} alt={movie.title} />
+                  <img src={movie.image} alt={movie.title} loading="lazy" />
                 </button>
               {/each}
             </div>
@@ -104,7 +104,7 @@
           <div class="bookshelf">
             {#each groupedBooks[year] as book}
               <button class="book" type="button" on:click={() => openModal(book)} aria-label="Open book details">
-                <img src={book.image} alt={book.title} />
+                <img src={book.image} alt={book.title} loading="lazy" />
               </button>
             {/each}
           </div>
@@ -115,7 +115,7 @@
     <!-- 弹窗 -->
     {#if showModal}
       <div class="modal-overlay" role="dialog" aria-modal="true">
-        <div class="modal-content {isDayTime ? 'day-theme' : 'night-theme'}">
+        <div class="modal-content {$isDayTime ? 'day-theme' : 'night-theme'}">
           <img class="book-cover" src={selectedItem.image} alt="{selectedItem.title}" />
           <h3>{selectedItem.title}</h3>
           {#if selectedItem.author}
@@ -131,7 +131,7 @@
       </div>
     {/if}
 
-    <div class="combined-timeline-wrapper {isDayTime ? 'day-theme' : 'night-theme'}">
+    <div class="combined-timeline-wrapper {$isDayTime ? 'day-theme' : 'night-theme'}">
       <h2 class="timeline-title">Timeline</h2>
       <div class="timeline-scroll-container">
         <div class="timeline-x-axis"></div>
@@ -149,13 +149,13 @@
             <div class="year-books">
               {#each groupedBooks[selectedYear] as book (book.title)}
                 <div class="timeline-book">
-                  <img src={book.image} alt="{book.title}" />
+                  <img src={book.image} alt="{book.title}" loading="lazy" />
                   <p>{book.title} (Book)</p>
                 </div>
               {/each}
               {#each groupedMovies[selectedYear] as movie (movie.title)}
                 <div class="timeline-book">
-                  <img src={movie.image} alt="{movie.title}" />
+                  <img src={movie.image} alt="{movie.title}" loading="lazy" />
                   <p>{movie.title} ({movie.type === "movie" ? "Movie" : "TV"})</p>
                 </div>
               {/each}

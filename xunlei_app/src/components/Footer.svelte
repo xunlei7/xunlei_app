@@ -1,9 +1,9 @@
-<script  lang="ts">
-   export let isDayTime: boolean = true; // 默认白天模式
-    export let onNavigate: (page: string) => void; // 导出 `onNavigate` 回调函数
-  </script>
+<script>
+  import { isDayTime } from '../stores/theme.js';
+  export let onNavigate; // 导出 `onNavigate` 回调函数
+</script>
   
-  <footer class="footer {isDayTime ? 'day-footer' : 'night-footer'}">
+  <footer class="footer {$isDayTime ? 'day-footer' : 'night-footer'}">
     <div class="footer-content">
       <span>© 2025 Xun Lei. All Rights Reserved. Made with love.</span>
       <a href="/" class="footer-link" on:click|preventDefault={() => onNavigate('privacy')}>Privacy</a>

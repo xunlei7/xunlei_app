@@ -1,11 +1,11 @@
 <script>
+  import { isDayTime } from '../stores/theme.js';
   export let logo = ""; // 导航栏 logo 图片路径
-  export let isDayTime = true; // 从父组件传递的主题状态
   export let onNavigate; // 接收 `app.svelte` 传入的导航方法
 </script>
 
 <!-- 导航栏 -->
-<nav class="{isDayTime ? 'day-theme' : 'night-theme'}">
+<nav class="{$isDayTime ? 'day-theme' : 'night-theme'}">
   <!-- logo 图像 -->
   <div class="logo">
     {#if logo}
