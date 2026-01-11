@@ -66,71 +66,8 @@
       <h2>Words, Reels, and Feels</h2>
       <p>I am passionate about books related to programming, fiction, and personal development. I enjoy immersing myself in new stories and learning from each book I read.</p>
     </div>
-   
-        <!-- 电影书架 -->
-    <div class="movieshelf-wrapper">
-      <h1 class="movieshelf-title">Movie & TV Shows shelf</h1>
-        <p class="bookshelf-description">
-          Here's a collection of movies and TV shows I have watched and loved:
-        </p>
-  
-        {#each sortedMovieYears as year}
-          <div class="year-section">
-            <h2 class="year-header">{year}</h2>
-            <div class="bookshelf">
-              {#each groupedMovies[year] as movie}
-                <button class="movie" type="button" on:click={() => openModal(movie)} aria-label="Open movie details">
-                  <img src={movie.image} alt={movie.title} loading="lazy" />
-                </button>
-              {/each}
-            </div>
-          </div>
-        {/each}
-    </div>
 
-    <!-- 分割线 -->
-    <div class="divider"></div>
-
-    <!-- 书籍书架 -->
-    <div class="bookshelf-wrapper">
-      <h1 class="bookshelf-title">Bookshelf</h1>
-      <p class="bookshelf-description">
-        Here's a collection of books I have read, want to read, and currently reading:
-      </p>
-  
-      {#each sortedYears as year}
-        <div class="year-section">
-          <h2 class="year-header">{year}</h2>
-          <div class="bookshelf">
-            {#each groupedBooks[year] as book}
-              <button class="book" type="button" on:click={() => openModal(book)} aria-label="Open book details">
-                <img src={book.image} alt={book.title} loading="lazy" />
-              </button>
-            {/each}
-          </div>
-        </div>
-      {/each}
-    </div>
-  
-    <!-- 弹窗 -->
-    {#if showModal}
-      <div class="modal-overlay" role="dialog" aria-modal="true">
-        <div class="modal-content {$isDayTime ? 'day-theme' : 'night-theme'}">
-          <img class="book-cover" src={selectedItem.image} alt="{selectedItem.title}" />
-          <h3>{selectedItem.title}</h3>
-          {#if selectedItem.author}
-            <p><strong>Author:</strong> {selectedItem.author}</p>
-          {:else if selectedItem.director}
-            <p><strong>Director:</strong> {selectedItem.director}</p>
-          {/if}
-          <p>{selectedItem.description}</p>
-          <div class="modal-actions">
-            <button class="close-button" on:click={closeModal}>Close</button>
-          </div>
-        </div>
-      </div>
-    {/if}
-
+    <!-- Timeline -->
     <div class="combined-timeline-wrapper {$isDayTime ? 'day-theme' : 'night-theme'}">
       <h2 class="timeline-title">Timeline</h2>
       <div class="timeline-scroll-container">
@@ -163,6 +100,67 @@
           </div>
         {/if}
     </div>
+
+    <!-- 分割线 -->
+    <div class="divider"></div>
+   
+    <!-- Shelf Container: Two columns layout -->
+    <div class="shelf-container">
+        <!-- 电影书架 -->
+        <div class="movieshelf-wrapper">
+          <h1 class="movieshelf-title">Movie & TV Shows shelf</h1>
+    
+            {#each sortedMovieYears as year}
+              <div class="year-section">
+                <h2 class="year-header">{year}</h2>
+                <div class="bookshelf">
+                  {#each groupedMovies[year] as movie}
+                    <button class="movie" type="button" on:click={() => openModal(movie)} aria-label="Open movie details">
+                      <img src={movie.image} alt={movie.title} loading="lazy" />
+                    </button>
+                  {/each}
+                </div>
+              </div>
+            {/each}
+        </div>
+
+        <!-- 书籍书架 -->
+        <div class="bookshelf-wrapper">
+          <h1 class="bookshelf-title">Bookshelf</h1>
+      
+          {#each sortedYears as year}
+            <div class="year-section">
+              <h2 class="year-header">{year}</h2>
+              <div class="bookshelf">
+                {#each groupedBooks[year] as book}
+                  <button class="book" type="button" on:click={() => openModal(book)} aria-label="Open book details">
+                    <img src={book.image} alt={book.title} loading="lazy" />
+                  </button>
+                {/each}
+              </div>
+            </div>
+          {/each}
+        </div>
+    </div>
+  
+    <!-- 弹窗 -->
+    {#if showModal}
+      <div class="modal-overlay" role="dialog" aria-modal="true">
+        <div class="modal-content {$isDayTime ? 'day-theme' : 'night-theme'}">
+          <img class="book-cover" src={selectedItem.image} alt="{selectedItem.title}" />
+          <h3>{selectedItem.title}</h3>
+          {#if selectedItem.author}
+            <p><strong>Author:</strong> {selectedItem.author}</p>
+          {:else if selectedItem.director}
+            <p><strong>Director:</strong> {selectedItem.director}</p>
+          {/if}
+          <p>{selectedItem.description}</p>
+          <div class="modal-actions">
+            <button class="close-button" on:click={closeModal}>Close</button>
+          </div>
+        </div>
+      </div>
+    {/if}
   
 </div>
 
@@ -192,12 +190,21 @@
       color: #555;
     }
 
+    .shelf-container {
+      display: flex;
+      gap: 2rem;
+      width: 95%;
+      max-width: 95%;
+      margin: 0 auto;
+      align-items: stretch;
+    }
+
     .bookshelf-wrapper {
-      max-width: 80%;
-      height: 600px;
+      flex: 1;
+      height: 800px;
       overflow-y: auto;
       border-radius: 12px;
-      padding: 1rem;
+      padding: 1.5rem;
       background-color: inherit;
       border: 2px solid #ccc;
       scrollbar-width: thin; /* Firefox */
@@ -205,11 +212,11 @@
     }
 
     .movieshelf-wrapper{
-      max-width: 80%;
-      height: 600px;
+      flex: 1;
+      height: 800px;
       overflow-y: auto;
       border-radius: 12px;
-      padding: 1rem;
+      padding: 1.5rem;
       background-color: inherit;
       border: 2px solid #ccc;
       scrollbar-width: thin; /* Firefox */
@@ -257,8 +264,8 @@
 
     .bookshelf {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1.5rem;
     }
 
     .book {
@@ -279,7 +286,7 @@
     }
     .movie img{
       width: 100%;
-      height: 160px;
+      aspect-ratio: 2 / 3;
       object-fit: cover;
       border-radius: 8px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -287,7 +294,7 @@
 
     .book img {
       width: 100%;
-      height: 160px;
+      aspect-ratio: 2 / 3;
       object-fit: cover;
       border-radius: 8px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -379,7 +386,8 @@
     }
 
     .combined-timeline-wrapper {
-      max-width: 100%;
+      max-width: 95%;
+      width: 95%;
       overflow-x: auto;
       padding: 2rem 0;
       background-color: inherit;
@@ -388,6 +396,7 @@
       border: none;
       border-radius: 0;
       box-shadow: none;
+      margin-bottom: 2rem;
     }
 
     .combined-timeline-wrapper::-webkit-scrollbar {
@@ -514,7 +523,7 @@
     }
 
     .timeline-book {
-      width: 100px;
+      width: 140px;
       text-align: center;
       transition: transform 0.3s ease;
     }
@@ -525,7 +534,7 @@
 
     .timeline-book img {
       width: 100%;
-      height: 120px;
+      height: 200px;
       object-fit: cover;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -562,7 +571,101 @@
       width: 50%; /* 分割线宽度 */
       height: 1px; /* 分割线高度 */
       background-color: #cccccc;
-      margin: 1rem auto;
+      margin: 2rem auto;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1600px) {
+      .bookshelf {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+
+    @media (max-width: 1400px) {
+      .bookshelf {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .bookshelf {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      .movie img, .book img {
+        aspect-ratio: 2 / 3;
+      }
+
+      .timeline-book {
+        width: 120px;
+      }
+
+      .timeline-book img {
+        height: 180px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+
+      .shelf-container {
+        flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+        gap: 1.5rem;
+      }
+
+      .bookshelf-wrapper, .movieshelf-wrapper {
+        width: 100%;
+        padding: 1rem;
+      }
+
+      .combined-timeline-wrapper {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .bookshelf {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+
+      .movie img, .book img {
+        aspect-ratio: 2 / 3;
+      }
+
+      .timeline-book {
+        width: 110px;
+      }
+
+      .timeline-book img {
+        height: 160px;
+      }
+
+      .reading-intro {
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .bookshelf {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .movie img, .book img {
+        aspect-ratio: 2 / 3;
+      }
+
+      .timeline-book {
+        width: 100px;
+      }
+
+      .timeline-book img {
+        height: 140px;
+      }
     }
 
 </style>

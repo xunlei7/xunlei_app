@@ -1,7 +1,7 @@
 <script>
   import { isDayTime } from '../stores/theme.js';
   export let onNavigate; // 导出 `onNavigate` 回调函数
-</script>
+  </script>
   
   <footer class="footer {$isDayTime ? 'day-footer' : 'night-footer'}">
     <div class="footer-content">

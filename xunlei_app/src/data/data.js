@@ -332,8 +332,7 @@ export const projects = [
         tags: ["RISC-V Assembly", "Graphics Programming", "Keyboard Input", "Pixel Mapping"],
         httpsLink: "https://git.ucsc.edu/cse-12/spring22/xlei11.git",
         sshLink: "git@git.ucsc.edu:cse-12/spring22/xlei11.git"
-    },
-    
+    }
 
 ];
 

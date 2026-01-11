@@ -10,7 +10,7 @@
   import Privacy from './routes/Privacy.svelte';
   import NotFound from './routes/NotFound.svelte';
   import { isDayTime, toggleTheme, updateThemeByTime } from './stores/theme.js';
-
+  
   let logo = "/logo.png";
   let currentPage = "home";
 
@@ -55,7 +55,7 @@
       updateThemeByTime();
       const interval = setInterval(updateThemeByTime, 60000);
       return () => clearInterval(interval);
-    }
+  }
   });
 </script>
 

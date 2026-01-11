@@ -1,129 +1,225 @@
 <script>
     import { blogEntries } from '../data/data.js';
+    import { isDayTime } from '../stores/theme.js';
 
-    let showAllBlogs = false; // 控制是否展开博客
- 
+    // Extract description from text, remove URLs
+    function getDescription(text) {
+        if (typeof text === 'string') {
+            // Remove URLs (http://, https://)
+            let cleaned = text.replace(/https?:\/\/[^\s]+/g, '').trim();
+            // Remove trailing colon and spaces
+            cleaned = cleaned.replace(/:\s*$/, '').trim();
+            // Get first sentence or first line
+            const firstLine = cleaned.split('.')[0] || cleaned.split('\n')[0];
+            return firstLine.length > 100 ? firstLine.substring(0, 100) + '...' : firstLine || 'Blog entry';
+        }
+        return 'Blog entry';
+    }
+
+    function handlePreview(entry) {
+        // Extract URL from text if available, or open in new tab
+        if (entry.text && typeof entry.text === 'string') {
+            const urlMatch = entry.text.match(/https?:\/\/[^\s]+/);
+            if (urlMatch) {
+                window.open(urlMatch[0], '_blank');
+            }
+        }
+    }
 </script>
 
-<div class="blog-container">
-    <h1 class="blog-title">Welcome to My World </h1>
-    <p class="blog-intro">Where every story, lesson, and discovery is a window into the passions that fuel my life.</p>
+<div class="{$isDayTime ? 'day-theme' : 'night-theme'} blog-container">
+    <h1 class="blog-title">Pick the Blog Post You Love</h1>
 
-    <!-- Iterate over blog entries to display each entry -->
-    {#each (showAllBlogs ? blogEntries : blogEntries.slice(0, 5)) as entry, index}
-    <div class="blog-entry">
-      <p class="post-date">{entry.date}</p>
-      <h2 class="post-title">{entry.title}</h2>
-      {#if entry.image}
-        <img class="post-image" src={entry.image} alt={entry.alt} loading="lazy">
-      {/if}
-      <p class="post-text">{@html entry.text}</p>
-      <hr class="divider" style="border-top: 1px solid #d3d3d3;">
+    <div class="blog-grid">
+        {#each blogEntries as entry}
+            <div class="blog-card">
+                {#if entry.image}
+                    <div class="blog-image-container">
+                        <img class="blog-image" src={entry.image} alt={entry.title || entry.alt} loading="lazy">
+                    </div>
+                {/if}
+                <div class="blog-card-content">
+                    <h2 class="blog-card-title">{entry.title}</h2>
+                    <p class="blog-card-description">{getDescription(entry.text)}</p>
+                    <p class="blog-card-date">{entry.date}</p>
+                    <button class="preview-button" on:click={() => handlePreview(entry)}>
+                        Preview
+                    </button>
+                </div>
+            </div>
+        {/each}
     </div>
-    {/each}
-
-    <!-- 展开/折叠按钮 -->
-    {#if blogEntries.length > 5}
-      <div class="toggle-button-container">
-          <button class="toggle-button" on:click={() => showAllBlogs = !showAllBlogs}>
-              {showAllBlogs ? "Show Less" : "Show More"}
-          </button>
-      </div>
-    {/if}
 </div>
 
 <style>
     .blog-container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem;
-      background-color: inherit;
-      text-align: left;
-    }
-
-    .blog-title {
-      font-size: 2.5rem;
-      font-weight: bold;
-      color: inherit;
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-
-    .blog-intro {
-      font-size: 1.25rem;
-      color: #555;
-      margin-bottom: 2rem;
-      line-height: 1.6;
-      text-align: center;
-    }
-
-    .blog-entry {
-      background-color: transparent;
-      margin-bottom: 1rem; /* Reduced to keep the content close */
-      padding: 1rem 0;
-    }
-
-    .blog-entry .post-date {
-      font-size: 0.9rem;
-      color: inherit;
-      margin-bottom: 0.5rem; /* Reduced gap */
-    }
-
-    .blog-entry p {
-      font-size: 1rem;
-      color: inherit;
-      line-height: 1.8;
-      margin-bottom: 0.5rem; /* Reduced spacing after text */
-    }
-
-    .post-image {
-      width: 100%;
-      max-width: 200px; /* 限制图片最大宽度 */
-      height: auto;
-      margin: 1rem 0;
-      border: none;
-    }
-    .post-title {
-        font-size: 1rem;
-        font-weight: bold;
-        margin-bottom: 0.5rem;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+        background-color: inherit;
         color: inherit;
     }
 
-    .divider {
-      border: none;
-      border-top: 1px solid #d3d3d3;
-      margin: 0.8rem 0;
-    }
-
-    /* Ensure no borders, padding, or background inconsistencies */
-    .blog-container, .blog-entry, .post-image, .divider {
-      box-shadow: none;
-    }
-
-    .toggle-button-container {
+    .blog-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: inherit;
+        margin-bottom: 3rem;
         text-align: center;
-        margin-top: 1rem;
     }
 
-    .toggle-button {
-      background-color: inherit;
-      color: inherit;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      cursor: pointer;
-      position: relative;
-      border: 2px solid #999;  /* 灰色边框 */
+    .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        width: 100%;
     }
 
-    .toggle-button:hover {
-        border: 2px solid #d3d3d3;
+    .blog-card {
+        background-color: inherit;
+        border: 1px solid rgba(128, 128, 128, 0.2);
+        border-radius: 8px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .blog-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .blog-image-container {
+        width: 100%;
+        overflow: hidden;
         background-color: #f5f5f5;
-        color: #000000;
-        transition: all 0.3s ease;
+        aspect-ratio: 4 / 3;
+        max-height: 180px;
     }
 
-    .toggle-button:focus {
-        outline: none;
+    .blog-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+
+    .blog-card:hover .blog-image {
+        transform: scale(1.05);
+    }
+
+    .blog-card-content {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+
+    .blog-card-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: inherit;
+        margin: 0 0 0.75rem 0;
+        line-height: 1.3;
+    }
+
+    .blog-card-description {
+        font-size: 0.95rem;
+        color: inherit;
+        opacity: 0.8;
+        margin: 0 0 0.5rem 0;
+        line-height: 1.5;
+        flex: 1;
+    }
+
+    .blog-card-date {
+        font-size: 0.85rem;
+        color: inherit;
+        opacity: 0.6;
+        margin: 0 0 1rem 0;
+    }
+
+    .preview-button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        align-self: flex-start;
+        margin-top: auto;
+    }
+
+    .preview-button:hover {
+        background-color: #0056b3;
+        transform: translateY(-1px);
+    }
+
+    .preview-button:active {
+        transform: translateY(0);
+    }
+
+    .night-theme .blog-card {
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .night-theme .blog-image-container {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .night-theme .preview-button {
+        background-color: #4da6ff;
+    }
+
+    .night-theme .preview-button:hover {
+        background-color: #3385cc;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+        .blog-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .blog-container {
+            padding: 2rem 1rem;
+        }
+
+        .blog-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .blog-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .blog-card-content {
+            padding: 1.25rem;
+        }
+
+        .blog-card-title {
+            font-size: 1.25rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .blog-title {
+            font-size: 1.5rem;
+        }
+
+        .preview-button {
+            width: 100%;
+            padding: 0.75rem;
+        }
     }
 </style>
