@@ -28,16 +28,14 @@
 </script>
 
 <div class="{$isDayTime ? 'day-theme' : 'night-theme'} blog-container">
-    <h1 class="blog-title">Pick the Blog Post You Love</h1>
-
     <div class="blog-grid">
         {#each blogEntries as entry}
             <div class="blog-card">
-                {#if entry.image}
+      {#if entry.image}
                     <div class="blog-image-container">
                         <img class="blog-image" src={entry.image} alt={entry.title || entry.alt} loading="lazy">
                     </div>
-                {/if}
+      {/if}
                 <div class="blog-card-content">
                     <h2 class="blog-card-title">{entry.title}</h2>
                     <p class="blog-card-description">{getDescription(entry.text)}</p>
@@ -46,26 +44,18 @@
                         Preview
                     </button>
                 </div>
-            </div>
-        {/each}
     </div>
+    {/each}
+      </div>
 </div>
 
 <style>
     .blog-container {
         max-width: 1400px;
-        margin: 0 auto;
+      margin: 0 auto;
         padding: 3rem 2rem;
-        background-color: inherit;
+      background-color: inherit;
         color: inherit;
-    }
-
-    .blog-title {
-        font-size: 2.5rem;
-        font-weight: bold;
-        color: inherit;
-        margin-bottom: 3rem;
-        text-align: center;
     }
 
     .blog-grid {
@@ -100,7 +90,7 @@
     }
 
     .blog-image {
-        width: 100%;
+      width: 100%;
         height: 100%;
         object-fit: cover;
         display: block;
@@ -145,7 +135,7 @@
     .preview-button {
         background-color: #007bff;
         color: white;
-        border: none;
+      border: none;
         border-radius: 4px;
         padding: 0.75rem 1.5rem;
         font-size: 1rem;
@@ -191,12 +181,7 @@
     @media (max-width: 768px) {
         .blog-container {
             padding: 2rem 1rem;
-        }
-
-        .blog-title {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-        }
+    }
 
         .blog-grid {
             grid-template-columns: 1fr;
@@ -213,10 +198,6 @@
     }
 
     @media (max-width: 480px) {
-        .blog-title {
-            font-size: 1.5rem;
-        }
-
         .preview-button {
             width: 100%;
             padding: 0.75rem;

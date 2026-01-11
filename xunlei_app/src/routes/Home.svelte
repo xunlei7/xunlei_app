@@ -142,7 +142,7 @@
                 <ul class="features-list">
                   {#each tableauConfig.features as feature}
                     <li class="feature-item">{feature}</li>
-                  {/each}
+      {/each}
                 </ul>
               </div>
             {/if}
@@ -411,7 +411,7 @@
     position: absolute;
     left: 0.75rem;
     color: #007bff;
-    font-weight: bold;
+  font-weight: bold;
   }
 
   .night-theme .feature-item {

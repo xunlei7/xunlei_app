@@ -186,18 +186,28 @@ The website is deployed on AWS EC2 using Nginx as the web server.
 
 #### One-Click Deployment
 
+The `deploy.sh` script runs from your local machine and handles the complete deployment:
+
 ```bash
-# Run on EC2
-cd ~/projects/xunlei_app/xunlei_app
+cd xunlei_app/xunlei_app
 ./deploy.sh
 ```
 
-The deployment script automatically:
-1. Pulls latest code
-2. Installs dependencies
-3. Builds the project
-4. Sets file permissions
-5. Reloads Nginx
+The script will:
+1. Build the project locally (optional verification)
+2. Optionally push changes to GitHub (you'll be prompted)
+3. Connect to EC2 via SSH
+4. Pull the latest code from GitHub
+5. Install dependencies
+6. Build the project
+7. Set file permissions
+8. Reload Nginx
+
+**Prerequisites:**
+- PEM key file (`xunleiweb.pem`) should be in `~/Desktop/` directory
+- Or update `EC2_KEY_PATH` in `deploy.sh` to point to your PEM file location
+- The script will automatically test the SSH connection before deploying
+- If PEM key is invalid or expired, the script will provide instructions for updating it
 
 #### Manual Deployment
 

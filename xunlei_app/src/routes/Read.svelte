@@ -61,12 +61,6 @@
 </script>
 
 <div class="{$isDayTime ? 'day-theme' : 'night-theme'} container">
-    <!-- 关于我的阅读简介 -->
-    <div class="reading-intro">
-      <h2>Words, Reels, and Feels</h2>
-      <p>I am passionate about books related to programming, fiction, and personal development. I enjoy immersing myself in new stories and learning from each book I read.</p>
-    </div>
-
     <!-- Timeline -->
     <div class="combined-timeline-wrapper {$isDayTime ? 'day-theme' : 'night-theme'}">
       <h2 class="timeline-title">Timeline</h2>
@@ -107,39 +101,39 @@
     <!-- Shelf Container: Two columns layout -->
     <div class="shelf-container">
         <!-- 电影书架 -->
-        <div class="movieshelf-wrapper">
-          <h1 class="movieshelf-title">Movie & TV Shows shelf</h1>
-    
-            {#each sortedMovieYears as year}
-              <div class="year-section">
-                <h2 class="year-header">{year}</h2>
-                <div class="bookshelf">
-                  {#each groupedMovies[year] as movie}
-                    <button class="movie" type="button" on:click={() => openModal(movie)} aria-label="Open movie details">
+    <div class="movieshelf-wrapper">
+      <h1 class="movieshelf-title">Movie & TV Shows shelf</h1>
+  
+        {#each sortedMovieYears as year}
+          <div class="year-section">
+            <h2 class="year-header">{year}</h2>
+            <div class="bookshelf">
+              {#each groupedMovies[year] as movie}
+                <button class="movie" type="button" on:click={() => openModal(movie)} aria-label="Open movie details">
                       <img src={movie.image} alt={movie.title} loading="lazy" />
-                    </button>
-                  {/each}
-                </div>
-              </div>
-            {/each}
-        </div>
-
-        <!-- 书籍书架 -->
-        <div class="bookshelf-wrapper">
-          <h1 class="bookshelf-title">Bookshelf</h1>
-      
-          {#each sortedYears as year}
-            <div class="year-section">
-              <h2 class="year-header">{year}</h2>
-              <div class="bookshelf">
-                {#each groupedBooks[year] as book}
-                  <button class="book" type="button" on:click={() => openModal(book)} aria-label="Open book details">
-                    <img src={book.image} alt={book.title} loading="lazy" />
-                  </button>
-                {/each}
-              </div>
+                </button>
+              {/each}
             </div>
-          {/each}
+          </div>
+        {/each}
+    </div>
+
+    <!-- 书籍书架 -->
+    <div class="bookshelf-wrapper">
+      <h1 class="bookshelf-title">Bookshelf</h1>
+  
+      {#each sortedYears as year}
+        <div class="year-section">
+          <h2 class="year-header">{year}</h2>
+          <div class="bookshelf">
+            {#each groupedBooks[year] as book}
+              <button class="book" type="button" on:click={() => openModal(book)} aria-label="Open book details">
+                    <img src={book.image} alt={book.title} loading="lazy" />
+              </button>
+            {/each}
+          </div>
+        </div>
+      {/each}
         </div>
     </div>
   
@@ -171,23 +165,6 @@
       padding: 2rem;
       flex-direction: column;
       align-items: center;
-    }
-
-    .reading-intro {
-      max-width: 800px;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .reading-intro h2 {
-      font-size: 1.75rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-    }
-
-    .reading-intro p {
-      font-size: 1rem;
-      color: #555;
     }
 
     .shelf-container {
@@ -642,10 +619,6 @@
 
       .timeline-book img {
         height: 160px;
-      }
-
-      .reading-intro {
-        margin-bottom: 1.5rem;
       }
     }
 

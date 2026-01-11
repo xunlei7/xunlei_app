@@ -11,7 +11,7 @@
 
     export let currentPopup = "";
     export let setCurrentPopup;
-    export let hoveredLanguage = "";
+    export let hoveredLanguages = [];
     export let onMouseEnter = () => {};
     export let onMouseLeave = () => {};
 
@@ -35,14 +35,17 @@
         HTML: "#E34C26",
         RISC_V: "#DEA584",
         C: "#178600",
+        R: "#276DC3",
         Default: "#999",
     };
 
-    $: languageColor = languageColors[language] || languageColors.Default;
+    // Split language string by " & " to handle multiple languages
+    $: languages = language.split(" & ").map(l => l.trim());
 
     $: isPopupVisible = currentPopup === name;
-    $: isHighlighted = hoveredLanguage !== "" && hoveredLanguage === language;
-    $: isDimmed = hoveredLanguage !== "" && hoveredLanguage !== language;
+    // Check if any of the card's languages match any of the hovered languages
+    $: isHighlighted = hoveredLanguages.length > 0 && languages.some(lang => hoveredLanguages.includes(lang));
+    $: isDimmed = hoveredLanguages.length > 0 && !languages.some(lang => hoveredLanguages.includes(lang));
 
     const closePopup = () => {
         setCurrentPopup("");
@@ -178,6 +181,7 @@
 
 <!-- Project Card -->
 <div class="project-card-container">
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
     <div 
         class="project-card"
         class:highlighted={isHighlighted}
@@ -189,11 +193,15 @@
             <h2>{name}</h2>
             <p class="description">{description}</p>
             <div class="language">
-                <span
-                    class="language-dot"
-                    style="background-color: {languageColor};"
-                ></span>
-                {language}
+                {#each languages as lang}
+                    <span class="language-item">
+                        <span
+                            class="language-dot"
+                            style="background-color: {languageColors[lang] || languageColors.Default};"
+                        ></span>
+                        {lang}
+                    </span>
+                {/each}
             </div>
             {#if tags.length > 0}
                 <div class="tags">
@@ -514,9 +522,16 @@
     .language {
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
+        gap: 0.75rem;
         margin-bottom: 0.5rem;
         font-size: 0.95rem;
         color: inherit;
+    }
+
+    .language-item {
+        display: flex;
+        align-items: center;
     }
 
     .language-dot {

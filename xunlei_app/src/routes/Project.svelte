@@ -4,7 +4,7 @@
     import { isDayTime } from '../stores/theme.js';
 
     let currentPopup = ""; // Currently opened popup project name
-    let hoveredLanguage = ""; // Language of the currently hovered project card
+    let hoveredLanguages = []; // Languages of the currently hovered project card
 
     // Function to set current popup, supports multiple popup interactions
     const setCurrentPopup = (popupName) => {
@@ -13,36 +13,35 @@
 
     // Function to handle mouse enter on a project card
     const handleMouseEnter = (language) => {
-        hoveredLanguage = language;
+        // Split language string by " & " to handle multiple languages
+        hoveredLanguages = language.split(" & ").map(l => l.trim());
     };
 
     // Function to handle mouse leave
     const handleMouseLeave = () => {
-        hoveredLanguage = "";
+        hoveredLanguages = [];
     };
 
 </script>
 
 <main class="projects-container {$isDayTime ? 'day-theme' : 'night-theme'}">
-    <h1 class="projects-title">Projects</h1>
-    
     <div class="projects-grid">
         {#each projects as project (project.name)}
-            <ProjectCard 
-                name={project.name}
-                description={project.description}
-                language={project.language}
-                tags={project.tags}
-                httpsLink={project.httpsLink}
-                sshLink={project.sshLink}
-                website={project.website}
-                currentPopup={currentPopup} 
-                setCurrentPopup={setCurrentPopup}
-                hoveredLanguage={hoveredLanguage}
+        <ProjectCard 
+            name={project.name}
+            description={project.description}
+            language={project.language}
+            tags={project.tags}
+            httpsLink={project.httpsLink}
+            sshLink={project.sshLink}
+            website={project.website}
+            currentPopup={currentPopup} 
+            setCurrentPopup={setCurrentPopup} 
+                hoveredLanguages={hoveredLanguages}
                 onMouseEnter={() => handleMouseEnter(project.language)}
                 onMouseLeave={handleMouseLeave}
-            />
-        {/each}
+        />
+    {/each}
     </div>
 </main>
 
@@ -52,14 +51,6 @@
         margin: 0 auto;
         padding: 2rem 1rem;
         background-color: inherit;
-        color: inherit;
-    }
-
-    .projects-title {
-        font-size: 2.5rem;
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 3rem;
         color: inherit;
     }
 
@@ -81,11 +72,6 @@
             padding: 1.5rem 0.5rem;
         }
 
-        .projects-title {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-        }
-
         .projects-grid {
             grid-template-columns: 1fr;
             gap: 1.5rem;
@@ -93,10 +79,6 @@
     }
 
     @media (max-width: 480px) {
-        .projects-title {
-            font-size: 1.5rem;
-        }
-
         .projects-grid {
             gap: 1rem;
         }
