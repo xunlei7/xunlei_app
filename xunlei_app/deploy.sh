@@ -142,9 +142,23 @@ cd "$PROJECT_DIR" || {
 
 echo "📥 Pulling latest changes from GitHub..."
 git fetch origin
-git pull origin main || {
-    echo "⚠️  Warning: git pull failed. Continuing with existing code..."
+
+# Check if there are local changes that would conflict
+if [ -n "$(git status --porcelain)" ]; then
+    echo "⚠️  Local changes detected. Stashing them before pull..."
+    git stash push -m "Auto-stash before deployment $(date '+%Y-%m-%d %H:%M:%S')"
+fi
+
+# Reset to match remote (discard any local commits that aren't on remote)
+git reset --hard origin/main || {
+    echo "⚠️  Warning: git reset failed. Trying pull instead..."
+    git pull origin main || {
+        echo "❌ Error: Failed to update code from GitHub"
+        exit 1
+    }
 }
+
+echo "✅ Code updated successfully"
 
 echo "📦 Installing dependencies..."
 if [ -f "package-lock.json" ]; then
