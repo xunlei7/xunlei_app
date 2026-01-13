@@ -21,7 +21,7 @@
 
   // Tableau Configuration - Customer Dashboard
   const tableauConfig = {
-    embedUrl: 'https://public.tableau.com/views/good_17679358106320/CustomerDashboard?:showVizHome=no&:embed=true&:display_count=n&:language=en-US',
+    embedUrl: 'https://public.tableau.com/views/good_17679358106320/CustomerDashboard?:showVizHome=no&:embed=true&:display_count=n&:language=en-US&:device=desktop',
     title: 'Sales Performance Analysis Dashboard',
     subtitle: 'Customer Analytics',
     technology: 'Built with Tableau',
@@ -124,7 +124,7 @@
       <!-- Tableau Project Section -->
       {#if tableauConfig.hasTableau && tableauConfig.embedUrl}
         <div id="sales-performance" class="tableau-section">
-          <div class="tableau-container">
+          <div class="tableau-container tableau-container-large">
             <div class="tableau-header">
               <div>
                 <h2 class="tableau-title">{tableauConfig.title}</h2>
@@ -154,14 +154,14 @@
               </div>
             {/if}
             
-            <div class="tableau-wrapper">
+            <div class="tableau-wrapper tableau-wrapper-large">
               <iframe
                 src={tableauConfig.embedUrl}
                 width="100%"
-                height="827"
+                height="850"
                 frameborder="0"
                 allowfullscreen
-                class="tableau-iframe"
+                class="tableau-iframe tableau-iframe-large"
                 title="Customer Dashboard - Tableau Visualization"
                 scrolling="no"
               ></iframe>
@@ -304,6 +304,10 @@
     margin: 0 auto;
     text-align: center;
     padding: 0 1rem;
+  }
+
+  .tableau-container-large {
+    max-width: 1350px;
   }
 
   .coffee-bean-container {
@@ -468,6 +472,14 @@
     background-color: inherit;
   }
 
+  .tableau-wrapper-large {
+    width: 100%;
+    max-width: 1200px;
+    min-height: 850px;
+    position: relative;
+    margin: 0 auto;
+  }
+
   .coffee-bean-wrapper {
     min-height: 1200px;
   }
@@ -478,6 +490,12 @@
     display: block;
   }
 
+  .tableau-iframe-large {
+    width: 100%;
+    height: 850px;
+    max-width: 1300px;
+  }
+
   .coffee-bean-iframe {
     height: 1200px;
   }
@@ -485,6 +503,19 @@
   @media (max-width: 500px) {
     .tableau-iframe {
       height: 600px;
+    }
+
+    .tableau-wrapper-large {
+      width: 100%;
+      height: auto;
+      min-height: 700px;
+      max-width: 100%;
+    }
+
+    .tableau-iframe-large {
+      width: 100%;
+      height: 700px;
+      max-width: 100%;
     }
     
     .coffee-bean-iframe {
@@ -537,8 +568,20 @@
       margin-bottom: 0.75rem;
     }
 
-    .coffee-bean-container {
+    .coffee-bean-container,
+    .tableau-container-large {
       max-width: 100%;
+    }
+
+    .tableau-wrapper-large {
+      width: 100%;
+      height: auto;
+      min-height: 700px;
+    }
+
+    .tableau-iframe-large {
+      width: 100% !important;
+      height: 700px;
     }
   }
 
@@ -582,12 +625,24 @@
       min-height: 400px;
     }
 
+    .tableau-wrapper-large {
+      width: 100% !important;
+      height: auto;
+      min-height: 750px;
+    }
+
     .coffee-bean-wrapper {
       min-height: 800px;
     }
 
     .tableau-iframe {
       height: 600px;
+    }
+
+    .tableau-iframe-large {
+      width: 100%;
+      height: 750px;
+      max-width: 100%;
     }
 
     .coffee-bean-iframe {
