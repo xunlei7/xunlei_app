@@ -105,6 +105,17 @@
               </div>
             {/if}
             
+            <div class="coffee-bean-visit-button">
+              <a href={coffeeBeanProject.embedUrl} target="_blank" rel="noopener noreferrer" class="visit-website-button">
+                <span class="button-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-size">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                  </svg>
+                </span>
+                Visit Website
+              </a>
+            </div>
+            
             <div class="tableau-wrapper coffee-bean-wrapper">
               <iframe
                 src={coffeeBeanProject.embedUrl}
@@ -158,7 +169,7 @@
               <iframe
                 src={tableauConfig.embedUrl}
                 width="100%"
-                height="850"
+                height="800"
                 frameborder="0"
                 allowfullscreen
                 class="tableau-iframe tableau-iframe-large"
@@ -219,7 +230,7 @@
   .content-layout {
     display: flex;
     gap: 3rem;
-    max-width: 1800px;
+    max-width: 2000px;
     margin: 0 auto;
     padding: 0 2rem;
   }
@@ -299,6 +310,11 @@
     scroll-margin-top: 100px;
   }
 
+  #sales-performance {
+    zoom: 90%;
+    transform-origin: top center;
+  }
+
   .tableau-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -307,7 +323,8 @@
   }
 
   .tableau-container-large {
-    max-width: 1350px;
+    max-width: 1200;
+    padding: 0;
   }
 
   .coffee-bean-container {
@@ -379,6 +396,55 @@
     margin-left: auto;
     margin-right: auto;
     text-align: left;
+  }
+
+  .coffee-bean-visit-button {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .visit-website-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: rgba(0, 123, 255, 0.1);
+    color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .visit-website-button:hover {
+    background-color: rgba(0, 123, 255, 0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+  }
+
+  .night-theme .visit-website-button {
+    background-color: rgba(0, 123, 255, 0.2);
+    color: #4da6ff;
+    border-color: #4da6ff;
+  }
+
+  .night-theme .visit-website-button:hover {
+    background-color: rgba(0, 123, 255, 0.3);
+    box-shadow: 0 4px 8px rgba(77, 166, 255, 0.3);
+  }
+
+  .button-icon {
+    display: flex;
+    align-items: center;
+  }
+
+  .icon-size {
+    width: 20px;
+    height: 20px;
   }
 
   .features-title {
@@ -474,8 +540,8 @@
 
   .tableau-wrapper-large {
     width: 100%;
-    max-width: 1200px;
-    min-height: 850px;
+    max-width: none;
+    min-height: 800px;
     position: relative;
     margin: 0 auto;
   }
@@ -492,8 +558,8 @@
 
   .tableau-iframe-large {
     width: 100%;
-    height: 850px;
-    max-width: 1300px;
+    height: 800px;
+    max-width: none;
   }
 
   .coffee-bean-iframe {
