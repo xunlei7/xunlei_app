@@ -106,46 +106,75 @@
             const popupWidth = popup.offsetWidth;
             const viewportWidth = window.innerWidth;
             const margin = 8; // Minimum margin from viewport edges
+            const gap = 8; // Gap between button and popup
 
-            // Calculate ideal horizontal position (centered on button)
-            const buttonCenterX = buttonRect.left + (buttonRect.width / 2);
-            const idealPopupLeft = buttonCenterX - (popupWidth / 2);
+            // Always try to show below button first
+            let showAbove = false;
+            if (buttonRect.bottom + popupHeight + gap + margin > viewportHeight) {
+                // Not enough space below, show above
+                showAbove = true;
+            }
 
-            // Determine vertical position
-            let verticalTransform = "translateY(8px)";
-            if (buttonRect.bottom + popupHeight + margin > viewportHeight) {
-                // If exceeds bottom, show above button
+            // Set vertical position (relative to button)
+            if (showAbove) {
                 popup.style.top = "auto";
                 popup.style.bottom = "100%";
-                verticalTransform = "translateY(-8px)";
             } else {
-                // Otherwise show below button
                 popup.style.top = "100%";
                 popup.style.bottom = "auto";
-                verticalTransform = "translateY(8px)";
             }
 
-            // Adjust horizontal position to stay within viewport
-            let horizontalTransform = "translateX(-50%)";
-            if (idealPopupLeft < margin) {
-                // Too close to left edge - align to left with margin
-                popup.style.left = `${margin}px`;
-                popup.style.right = "auto";
-                horizontalTransform = "translateX(0)";
-            } else if (idealPopupLeft + popupWidth > viewportWidth - margin) {
-                // Too close to right edge - align to right with margin
-                popup.style.left = "auto";
-                popup.style.right = `${margin}px`;
-                horizontalTransform = "translateX(0)";
+            // Calculate horizontal position relative to button
+            // Get button's position relative to viewport
+            const buttonLeft = buttonRect.left;
+            const buttonRight = buttonRect.right;
+            const buttonCenterX = buttonRect.left + (buttonRect.width / 2);
+            const buttonWidth = buttonRect.width;
+
+            // Try to center popup on button
+            let idealPopupLeft = buttonCenterX - (popupWidth / 2);
+            let popupLeft = 0; // Relative to button's left edge
+
+            // Check if centered position fits within viewport
+            if (idealPopupLeft >= margin && idealPopupLeft + popupWidth <= viewportWidth - margin) {
+                // Centered position works
+                popupLeft = idealPopupLeft - buttonLeft;
             } else {
-                // Center on button
-                popup.style.left = "50%";
-                popup.style.right = "auto";
-                horizontalTransform = "translateX(-50%)";
+                // Centered doesn't fit, try other alignments
+                // Try right-aligning popup to button's right edge
+                const rightAlignLeft = buttonRight - popupWidth;
+                if (rightAlignLeft >= margin) {
+                    // Right-align works
+                    popupLeft = buttonWidth - popupWidth;
+                } else {
+                    // Try left-aligning to button's left edge
+                    const leftAlignLeft = buttonLeft;
+                    if (leftAlignLeft + popupWidth <= viewportWidth - margin) {
+                        // Left-align works
+                        popupLeft = 0;
+                    } else {
+                        // Need to adjust based on viewport constraints
+                        if (buttonLeft < viewportWidth / 2) {
+                            // Button is on left side, align popup to left margin
+                            popupLeft = margin - buttonLeft;
+                        } else {
+                            // Button is on right side, align popup to right margin
+                            popupLeft = (viewportWidth - margin - popupWidth) - buttonLeft;
+                        }
+                    }
+                }
             }
 
-            // Apply transforms
-            popup.style.transform = `${horizontalTransform} ${verticalTransform}`;
+            // Apply horizontal position (relative to button)
+            popup.style.left = `${popupLeft}px`;
+            popup.style.right = "auto";
+            
+            // Apply vertical transform
+            if (showAbove) {
+                popup.style.transform = "translateY(-8px)";
+            } else {
+                popup.style.transform = "translateY(8px)";
+            }
 
             // Show popup
             popup.style.visibility = "visible";
@@ -230,27 +259,25 @@
         </div>
 
         <div class="actions">
-            <button
-                class="code-button"
-                data-name={name}
-                on:click={() => {
-                    setCurrentPopup(isPopupVisible ? "" : name); // Toggle popup display state
-                    if (!isPopupVisible) {
-                        setTimeout(adjustPopupPosition, 0); // Adjust popup position
-                    }
-                }}
-            >
-                Code
-            </button>
-        </div>
-    </div>
-    
-    {#if isPopupVisible}
-        <div
-            class="popup"
-            data-name={name}
-            style="width: calc({cloneUrl.length}ch + 4.5rem); min-width: 320px; max-width: 95vw;"
-        >
+            <div class="code-button-wrapper">
+                <button
+                    class="code-button"
+                    data-name={name}
+                    on:click={() => {
+                        setCurrentPopup(isPopupVisible ? "" : name); // Toggle popup display state
+                        if (!isPopupVisible) {
+                            setTimeout(adjustPopupPosition, 0); // Adjust popup position
+                        }
+                    }}
+                >
+                    Code
+                </button>
+                {#if isPopupVisible}
+                    <div
+                        class="popup"
+                        data-name={name}
+                        style="width: calc({cloneUrl.length}ch + 4.5rem); min-width: 320px; max-width: 95vw;"
+                    >
             <div class="popup-content">
                 <div class="protocol-switch">
                     <button
@@ -308,8 +335,11 @@
                     </button>
                 </div>
             </div>
+                    </div>
+                {/if}
+            </div>
         </div>
-    {/if}
+    </div>
 </div>
 
 <style>
@@ -378,6 +408,10 @@
         border-top: 1px solid rgba(128, 128, 128, 0.2);
     }
 
+    .code-button-wrapper {
+        position: relative;
+    }
+
     .code-button {
         padding: 0.5rem 1rem;
         background-color: inherit;
@@ -385,7 +419,6 @@
         border: 2px solid currentColor;
         border-radius: 4px;
         cursor: pointer;
-        position: relative;
         transition: all 0.3s ease;
         font-size: 0.9rem;
     }
@@ -399,8 +432,8 @@
     .popup {
         position: absolute;
         top: 100%;
-        left: 50%;
-        transform: translateX(-50%) translateY(8px);
+        left: 0;
+        transform: translateY(8px);
         padding: 1.25rem;
         border-radius: 8px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
