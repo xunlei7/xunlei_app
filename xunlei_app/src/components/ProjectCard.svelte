@@ -49,6 +49,14 @@
 
     const closePopup = () => {
         setCurrentPopup("");
+        // Remove popup-active class from container
+        const popup = document.querySelector(`.popup[data-name="${name}"]`);
+        if (popup) {
+            const container = popup.closest('.project-card-container');
+            if (container instanceof HTMLElement) {
+                container.classList.remove('popup-active');
+            }
+        }
     };
 
     const copyToClipboard = async () => {
@@ -178,7 +186,13 @@
 
             // Show popup
             popup.style.visibility = "visible";
-            popup.style.zIndex = "9999";
+            popup.style.zIndex = "99999";
+            
+            // Ensure container has high z-index when popup is visible
+            const container = popup.closest('.project-card-container');
+            if (container instanceof HTMLElement) {
+                container.classList.add('popup-active');
+            }
         }
     };
 
@@ -205,6 +219,31 @@
             adjustPopupPosition(); // Ensure popup position adjusts correctly after switching
         }, 0);
     };
+
+    // Watch for popup visibility changes to manage container z-index
+    $: if (isPopupVisible) {
+        // Popup is visible, ensure container has high z-index
+        setTimeout(() => {
+            const popup = document.querySelector(`.popup[data-name="${name}"]`);
+            if (popup) {
+                const container = popup.closest('.project-card-container');
+                if (container instanceof HTMLElement) {
+                    container.classList.add('popup-active');
+                }
+            }
+        }, 0);
+    } else {
+        // Popup is hidden, remove popup-active class
+        setTimeout(() => {
+            const popup = document.querySelector(`.popup[data-name="${name}"]`);
+            if (popup) {
+                const container = popup.closest('.project-card-container');
+                if (container instanceof HTMLElement) {
+                    container.classList.remove('popup-active');
+                }
+            }
+        }, 0);
+    }
 
     onMount(() => {
         document.addEventListener("click", handleOutsideClick);
@@ -350,6 +389,12 @@
         z-index: auto;
     }
 
+    /* When popup is visible, ensure container has high z-index */
+    /* svelte-ignore css-unused-selector */
+    :global(.project-card-container.popup-active) {
+        z-index: 99998;
+    }
+
     .project-card {
         background: inherit;
         color: inherit;
@@ -363,11 +408,23 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         transition: box-shadow 0.3s ease, transform 0.2s ease, opacity 0.3s ease;
         border: 1px solid rgba(128, 128, 128, 0.2);
+        position: relative;
+        z-index: 0; /* Default z-index, lower than popup */
     }
 
     .project-card:hover {
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         transform: translateY(-2px);
+    }
+
+    /* When popup is active, prevent card from appearing above popup */
+    /* svelte-ignore css-unused-selector */
+    :global(.project-card-container.popup-active .project-card),
+    /* svelte-ignore css-unused-selector */
+    :global(.project-card-container.popup-active .project-card:hover),
+    /* svelte-ignore css-unused-selector */
+    :global(.project-card-container.popup-active .project-card.highlighted) {
+        z-index: 1; /* Keep card below popup (z-index: 99999) */
     }
 
     .project-card.highlighted {
@@ -410,6 +467,7 @@
 
     .code-button-wrapper {
         position: relative;
+        z-index: 1; /* Ensure wrapper is above card content */
     }
 
     .code-button {
@@ -444,9 +502,18 @@
         flex-direction: column;
         align-items: flex-start;
         border: 2px solid #cccccc;
-        z-index: 9999;
+        z-index: 99999;
         background-color: var(--popup-bg, #ffffff);
         color: var(--popup-text, #000000);
+        isolation: isolate; /* Create new stacking context */
+        will-change: transform; /* Optimize for transform animations */
+    }
+    
+    /* Ensure popup is always on top, even when card is hovered */
+    /* svelte-ignore css-unused-selector */
+    :global(.project-card-container.popup-active .popup) {
+        z-index: 99999;
+        position: absolute;
     }
 
     .popup-content {
