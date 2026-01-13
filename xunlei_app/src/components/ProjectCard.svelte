@@ -105,30 +105,47 @@
             const viewportHeight = window.innerHeight;
             const popupWidth = popup.offsetWidth;
             const viewportWidth = window.innerWidth;
+            const margin = 8; // Minimum margin from viewport edges
 
-            // Check if popup exceeds viewport bottom
-            if (buttonRect.bottom + popupHeight + 8 > viewportHeight) {
-                // If exceeds, adjust to above button
+            // Calculate ideal horizontal position (centered on button)
+            const buttonCenterX = buttonRect.left + (buttonRect.width / 2);
+            const idealPopupLeft = buttonCenterX - (popupWidth / 2);
+
+            // Determine vertical position
+            let verticalTransform = "translateY(8px)";
+            if (buttonRect.bottom + popupHeight + margin > viewportHeight) {
+                // If exceeds bottom, show above button
                 popup.style.top = "auto";
-                popup.style.bottom = "20%";
-                popup.style.transform = "translateX(-50%) translateY(-8px)";
+                popup.style.bottom = "100%";
+                verticalTransform = "translateY(-8px)";
             } else {
-                // Otherwise keep below button
-                popup.style.top = "95%";
+                // Otherwise show below button
+                popup.style.top = "100%";
                 popup.style.bottom = "auto";
-                popup.style.transform = "translateX(-50%) translateY(8px)";
+                verticalTransform = "translateY(8px)";
             }
 
             // Adjust horizontal position to stay within viewport
-            const popupLeft = buttonRect.left + (buttonRect.width / 2) - (popupWidth / 2);
-            if (popupLeft < 8) {
-                popup.style.left = "8px";
-                popup.style.transform = popup.style.transform.replace("translateX(-50%)", "translateX(0)");
-            } else if (popupLeft + popupWidth > viewportWidth - 8) {
+            let horizontalTransform = "translateX(-50%)";
+            if (idealPopupLeft < margin) {
+                // Too close to left edge - align to left with margin
+                popup.style.left = `${margin}px`;
+                popup.style.right = "auto";
+                horizontalTransform = "translateX(0)";
+            } else if (idealPopupLeft + popupWidth > viewportWidth - margin) {
+                // Too close to right edge - align to right with margin
                 popup.style.left = "auto";
-                popup.style.right = "8px";
-                popup.style.transform = popup.style.transform.replace("translateX(-50%)", "translateX(0)");
+                popup.style.right = `${margin}px`;
+                horizontalTransform = "translateX(0)";
+            } else {
+                // Center on button
+                popup.style.left = "50%";
+                popup.style.right = "auto";
+                horizontalTransform = "translateX(-50%)";
             }
+
+            // Apply transforms
+            popup.style.transform = `${horizontalTransform} ${verticalTransform}`;
 
             // Show popup
             popup.style.visibility = "visible";
@@ -274,7 +291,7 @@
                             on:click={openLink}
                             title="Open link in new tab"
                         >
-                            <span class="open-icon">🔗</span>
+                            <span class="open-text">Open</span>
                         </button>
                     {/if}
                     <button
@@ -284,9 +301,9 @@
                         title={copied ? "Copied!" : "Copy to clipboard"}
                     >
                         {#if copied}
-                            <span class="copy-icon">✓</span>
+                            <span class="copy-text">Copied</span>
                         {:else}
-                            <span class="copy-icon">📋</span>
+                            <span class="copy-text">Copy</span>
                         {/if}
                     </button>
                 </div>
@@ -465,7 +482,7 @@
     }
 
     .open-button {
-        padding: 0.5rem;
+        padding: 0.5rem 1rem;
         border: 1px solid #ccc;
         border-radius: 4px;
         background-color: inherit;
@@ -475,7 +492,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        min-width: 40px;
+        min-width: 60px;
         height: 38px;
     }
 
@@ -485,12 +502,13 @@
         color: white;
     }
 
-    .open-icon {
-        font-size: 1rem;
+    .open-text {
+        font-size: 0.9rem;
+        font-weight: 500;
     }
 
     .copy-button {
-        padding: 0.5rem;
+        padding: 0.5rem 1rem;
         border: 1px solid #ccc;
         border-radius: 4px;
         background-color: inherit;
@@ -500,7 +518,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        min-width: 40px;
+        min-width: 60px;
         height: 38px;
     }
 
@@ -515,8 +533,9 @@
         color: white;
     }
 
-    .copy-icon {
-        font-size: 1rem;
+    .copy-text {
+        font-size: 0.9rem;
+        font-weight: 500;
     }
 
     .language {
