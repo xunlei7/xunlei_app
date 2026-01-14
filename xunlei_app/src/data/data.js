@@ -35,6 +35,15 @@ export const books = [
 // movies
 export const movies = [
   {
+    title: "Stranger Things",
+    director: "The Duffer Brothers",
+    image: "/StrangerThings.jpg",
+    description: "A nostalgic sci-fi thriller set in the 1980s, where a small town is shaken by a child's disappearance and a series of supernatural events. As a group of kids uncovers secret experiments and a terrifying parallel dimension known as the Upside Down, their friendship becomes the center of a battle against forces far beyond them. With strong character growth, suspenseful storytelling, and iconic retro vibes, the series blends horror, adventure, and heartfelt emotion into a gripping binge-watch experience.",
+    year: "2026",
+    type: "tv-show"
+  },
+  
+  {
     title: "Frieren: Beyond Journey‘s End",
     director: "Keiichiro Saito",
     image: "/Frieren.jpg",
