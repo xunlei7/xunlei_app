@@ -144,7 +144,7 @@
       title: 'SnapStyle — Smart Wardrobe Assistant',
       description:
         'SnapStyle is an end-to-end AI-powered virtual wardrobe system that helps users digitize their clothing, search for visually compatible items, and generate outfit recommendations from both visual similarity and natural-language style prompts. It was developed as the DSAN 6700 final project and deployed as an interactive Streamlit app on Hugging Face Spaces.',
-      tags: ['Machine Learning', 'Computer Vision', 'NLP'],
+      tags: ['Machine Learning', 'NLP'],
       language: 'Python',
       repo: 'https://github.com/CJ-TA-ORG/dsan-6700-f25-final-project-group-5',
       live: 'https://huggingface.co/spaces/jerryslade/snapstyle',
@@ -166,11 +166,24 @@
       accent: '#2d3945'
     },
     {
+      id: 'dc-green-space-equity',
+      title: 'D.C. Green Space Equity',
+      description:
+        'This project examines environmental equity in Washington, D.C. by analyzing how income and geography relate to urban park access. It investigates whether higher-income neighborhoods benefit from better green-space access and highlights potential structural disparities in city planning.',
+      tags: ['Geospatial Data', 'Data Visualization'],
+      language: 'R',
+      repo: 'https://github.com/xunlei7/dc-green-space-equity',
+      live: '',
+      previewUrl: '',
+      image: '/dc-green-space-equity.png',
+      accent: '#5a7c3a'
+    },
+    {
       id: 'cybersecurity-digital-literacy',
       title: 'Cybersecurity Digital Literacy',
       description:
         'This project builds an adaptive cybersecurity literacy test using Item Response Theory and the 3PL model. The Shiny application selects True/False cybersecurity questions in real time, estimates user ability, tracks standard error, and visualizes ICC/IIC curves to make the adaptive testing process transparent and efficient.',
-      tags: ['Statistical Learning', 'R Shiny'],
+      tags: ['Statistical Learning'],
       language: 'R',
       repo: 'https://github.com/xunlei7/Cybersecurity-Digital-Literacy',
       live: '',
@@ -194,12 +207,11 @@
   const projectFilters = [
     'All',
     'Data Visualization',
+    'Geospatial Data',
     'Tableau',
     'Machine Learning',
-    'Computer Vision',
     'NLP',
     'Statistical Learning',
-    'R Shiny',
     'AWS'
   ];
 
@@ -365,7 +377,12 @@
                     class="visual-project-card"
                     on:click={() => selectProject(project)}
                   >
-                    <div class:dashboard-preview={project.previewMode === 'dashboard'} class="project-image" style={`--accent: ${project.accent};`}>
+                    <div
+                      class:dashboard-preview={project.previewMode === 'dashboard' || project.previewMode === 'dashboard-padded'}
+                      class:padded-preview={project.previewMode === 'padded' || project.previewMode === 'dashboard-padded'}
+                      class="project-image"
+                      style={`--accent: ${project.accent};`}
+                    >
                       {#if project.previewUrl}
                         <iframe
                           src={project.previewUrl}
@@ -802,7 +819,6 @@
   .visual-project-card {
     appearance: none;
     width: 100%;
-    aspect-ratio: 16 / 12;
     padding: 0;
     border: 0;
     border-radius: 8px;
@@ -815,7 +831,7 @@
     transition: transform 0.24s ease, box-shadow 0.24s ease;
     transform-origin: center;
     display: grid;
-    grid-template-rows: 80% 12% 8%;
+    grid-template-rows: auto auto auto;
   }
 
   .visual-project-card:hover,
@@ -831,8 +847,7 @@
 
   .project-image {
     width: 100%;
-    height: 100%;
-    min-height: 0;
+    aspect-ratio: 16 / 9;
     background: linear-gradient(135deg, var(--accent), #f7f7f7);
     display: grid;
     place-items: center;
@@ -860,6 +875,15 @@
     transform-origin: top left;
   }
 
+  .project-image.dashboard-preview.padded-preview iframe {
+    inset: auto;
+    top: 6%;
+    left: 6%;
+    width: 176%;
+    height: 176%;
+    transform: scale(0.5);
+  }
+
   .preview-shade {
     position: absolute;
     inset: 0;
@@ -873,6 +897,11 @@
     object-fit: contain;
     display: block;
     background: white;
+  }
+
+  .project-image.padded-preview img {
+    width: 88%;
+    height: 88%;
   }
 
   .image-placeholder {
@@ -892,12 +921,11 @@
   .project-title-band {
     background: white;
     color: #303741;
-    padding: 0.25rem 1rem;
+    padding: 0.75rem 1rem 0.35rem;
     text-align: center;
     border-top: 1px solid rgba(48, 55, 65, 0.12);
     display: grid;
     place-items: center;
-    min-height: 0;
   }
 
   .project-title-band h3 {
@@ -912,10 +940,8 @@
     gap: 0.55rem;
     align-items: center;
     justify-content: center;
-    padding: 0.2rem 0.8rem 0.45rem;
+    padding: 0.35rem 0.8rem 0.85rem;
     background: white;
-    min-height: 0;
-    overflow: hidden;
   }
 
   .project-tags span,
