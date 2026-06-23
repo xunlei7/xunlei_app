@@ -1,27 +1,17 @@
 <script>
   import { onMount } from 'svelte';
   import Home from './routes/Home.svelte';
-  import Blog from './routes/Blog.svelte';
-  import Read from './routes/Read.svelte';
-  import Project from './routes/Project.svelte';
-  import About from './routes/About.svelte';
-  import Navbar from './components/Navbar.svelte';
   import Footer from './components/Footer.svelte';
   import Privacy from './routes/Privacy.svelte';
   import NotFound from './routes/NotFound.svelte';
-  import { isDayTime, toggleTheme, updateThemeByTime } from './stores/theme.js';
+  import { isDayTime, updateThemeByTime } from './stores/theme.js';
   
-  let logo = "/logo.png";
   let currentPage = "home";
 
   
   // 组件映射
   const pageComponents = {
     home: Home,
-    blog: Blog,
-    read: Read,
-    project: Project,
-    about: About,
     privacy: Privacy,
     notFound: NotFound, // 404 页面
   };
@@ -60,22 +50,8 @@
 </script>
 
 <div class="{$isDayTime ? 'day-theme' : 'night-theme'}">
-  <Navbar {logo} onNavigate={navigateTo} />
-
-    <!-- 👇 全局主题切换按钮（出现在每个页面） -->
-    <div class="theme-toggle-container">
-      <button class="theme-toggle-button" on:click={toggleTheme}>
-        {$isDayTime ? '🌙 Dark Mode' : '☀️ Light Mode'}
-      </button>
-    </div>
-
-
   <main>
-    {#if currentPage === "read"}
-      <Read />
-    {:else if currentPage === "blog"}
-      <Blog />
-    {:else if currentPage === "home"}
+    {#if currentPage === "home"}
       <Home />
     {:else}
       <svelte:component this="{pageComponents[currentPage]}" />
@@ -84,7 +60,5 @@
  
   <Footer onNavigate={navigateTo} />
 </div>
-
-
 
 

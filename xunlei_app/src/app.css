@@ -45,8 +45,8 @@ html, body {
 
 main {
   flex: 1; /* 让 main 区域自动填满剩余高度 */
-  padding: 0.5rem; /* 主内容的内边距 */
-  margin-top: 1rem; /* 导航栏与内容的距离，确保间距适中 */
+  padding: 0; /* 主内容的内边距 */
+  margin-top: 0; /* 页面现在没有顶部导航栏 */
   background-color: inherit; /* 继承背景颜色 */
   color: inherit; /* 继承文字颜色 */
 }
