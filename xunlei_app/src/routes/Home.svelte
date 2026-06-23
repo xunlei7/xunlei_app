@@ -5,7 +5,6 @@
   const profile = {
     name: 'Xun Lei',
     chineseName: '雷 迅',
-    title: 'Data Science and Analytics Portfolio',
     summary:
       "I am a Master's student at Georgetown University specializing in Data Science and Analytics. I focus on data-driven decision-making, transforming complex data into actionable insights through analytics, visualization, and storytelling.",
     interests:
@@ -283,9 +282,8 @@
     <aside class="sidebar" aria-label="Portfolio sections">
       <div>
         <div class="identity-card">
-          <div class="logo-mark">XL</div>
+          <img class="profile-photo" src="/profile-photo.jpg" alt="Xun Lei" loading="eager" />
           <p class="sidebar-name">{profile.name}</p>
-          <p class="sidebar-title">{profile.title}</p>
         </div>
 
         <nav class="sidebar-nav">
@@ -571,28 +569,22 @@
     margin-bottom: 1.5rem;
   }
 
-  .logo-mark {
-    width: 3rem;
-    height: 3rem;
-    border: 1px solid currentColor;
+  .profile-photo {
+    width: 9rem;
+    aspect-ratio: 1;
     border-radius: 50%;
-    display: grid;
-    place-items: center;
-    font-weight: 700;
+    object-fit: cover;
+    object-position: 64% 50%;
+    display: block;
     margin-bottom: 1rem;
+    border: 2px solid rgba(128, 128, 128, 0.35);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
   }
 
   .sidebar-name {
     font-size: 1.1rem;
     font-weight: 700;
     margin: 0 0 0.25rem;
-  }
-
-  .sidebar-title {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin: 0;
-    opacity: 0.68;
   }
 
   .sidebar-nav {
@@ -723,6 +715,7 @@
     font-size: clamp(2.5rem, 6vw, 5.2rem);
     line-height: 0.95;
     margin: 0 0 1.5rem;
+    text-align: center;
   }
 
   h2 {
