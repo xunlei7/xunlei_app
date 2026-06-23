@@ -519,7 +519,7 @@
       </section>
 
       <section id="resume" class="resume-section">
-        <a class="resume-button" href={links.resume} download>Resume PDF</a>
+        <a class="resume-button" href={links.resume} target="_blank" rel="noopener noreferrer">Resume PDF</a>
       </section>
     </div>
   </div>
