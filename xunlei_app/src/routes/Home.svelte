@@ -6,9 +6,9 @@
     name: 'Xun Lei',
     chineseName: '雷 迅',
     summary:
-      "I am a Master's student at Georgetown University specializing in Data Science and Analytics. I focus on data-driven decision-making, transforming complex data into actionable insights through analytics, visualization, and storytelling.",
+      "I recently graduated with a Master's degree in Data Science and Analytics from Georgetown University, following my undergraduate studies at the University of California, Santa Cruz.",
     interests:
-      'I enjoy collaborating on projects involving machine learning, data visualization, and data-driven storytelling.'
+      'I am interested in how data can help explain complex problems and support better decisions. My work combines machine learning, data analysis, visualization, and storytelling to turn raw data into insights that are easier to understand and act on.'
   };
 
   const links = {
@@ -947,7 +947,6 @@
     font-weight: 700;
   }
 
-  .night-theme .project-popover,
   .night-theme .project-tags span,
   .night-theme .detail-tags span {
     background: #303741;
@@ -968,9 +967,17 @@
     overflow-y: auto;
     padding: 1.7rem 2rem;
     border-radius: 8px;
-    background: #303741;
-    color: white;
-    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.24);
+    border: 1px solid rgba(48, 55, 65, 0.14);
+    background: rgba(255, 255, 255, 0.97);
+    color: #202832;
+    box-shadow: 0 18px 44px rgba(48, 55, 65, 0.18);
+  }
+
+  .night-theme .project-popover {
+    border-color: rgba(255, 255, 255, 0.14);
+    background: #202832;
+    color: #f4f6f8;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.36);
   }
 
   .project-popover::before {
@@ -983,10 +990,10 @@
     right: 1rem;
     width: 2.8rem;
     height: 2.8rem;
-    border: 1px solid rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(48, 55, 65, 0.24);
     border-radius: 50%;
     background: transparent;
-    color: white;
+    color: inherit;
     cursor: pointer;
     font-size: 1.9rem;
     line-height: 1;
@@ -995,6 +1002,14 @@
   }
 
   .popover-close:hover {
+    background: rgba(48, 55, 65, 0.08);
+  }
+
+  .night-theme .popover-close {
+    border-color: rgba(255, 255, 255, 0.35);
+  }
+
+  .night-theme .popover-close:hover {
     background: rgba(255, 255, 255, 0.12);
   }
 
@@ -1017,7 +1032,13 @@
   }
 
   .detail-tags span {
-    background: rgba(255, 255, 255, 0.14);
+    background: rgba(48, 55, 65, 0.1);
+    color: #303741;
+  }
+
+  .night-theme .detail-tags span {
+    background: #303741;
+    color: white;
   }
 
   .project-links {
@@ -1027,10 +1048,14 @@
   }
 
   .project-links a {
-    color: #18c8ff;
+    color: #0b7fab;
     font-weight: 700;
     text-decoration: underline;
     text-underline-offset: 4px;
+  }
+
+  .night-theme .project-links a {
+    color: #18c8ff;
   }
 
   .resume-section {
